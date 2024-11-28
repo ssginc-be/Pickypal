@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.LoginController">
+    <children>
+        <AnchorPane layoutX="224.0" layoutY="76.0" prefHeight="249.0" prefWidth="310.0" style="-fx-background-radius: 25; -fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+            <children>
+                <JFXTextField layoutX="72.0" layoutY="53.0" prefHeight="25.0" prefWidth="174.0" promptText="Enter Login">
+                    <focusColor>
+                        <LinearGradient endX="1.0" endY="1.0">
+                            <stops>
+                                <Stop offset="0.0">
+                                    <color>
+                                        <Color red="0.3215686274509804" green="0.2627450980392157" blue="0.5607843137254902" />
+                                    </color>
+                                </Stop>
+                                <Stop offset="1.0">
+                                    <color>
+                                        <Color red="0.3215686274509804" green="0.2627450980392157" blue="0.5607843137254902" />
+                                    </color>
+                                </Stop>
+                            </stops>
+                        </LinearGradient>
+                    </focusColor>
+                </JFXTextField>
+                <JFXPasswordField layoutX="72.0" layoutY="109.0" prefHeight="25.0" prefWidth="174.0" promptText="Enter Password">
+                    <focusColor>
+                        <LinearGradient endX="1.0" endY="1.0">
+                            <stops>
+                                <Stop offset="0.0">
+                                    <color>
+                                        <Color red="0.3215686274509804" green="0.2627450980392157" blue="0.5607843137254902" />
+                                    </color>
+                                </Stop>
+                                <Stop offset="1.0">
+                                    <color>
+                                        <Color red="0.3215686274509804" green="0.2627450980392157" blue="0.5607843137254902" />
+                                    </color>
+                                </Stop>
+                            </stops>
+                        </LinearGradient>
+                    </focusColor>
+                </JFXPasswordField>
+                <JFXButton buttonType="RAISED" layoutX="112.0" layoutY="176.0" prefHeight="41.0" prefWidth="87.0" styleClass="colorBackground" stylesheets="@../css/color.css" text="Login" />
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="sideBar" layoutX="31.0" layoutY="53.0" prefHeight="295.0" prefWidth="220.0" style="-fx-background-radius: 25;" styleClass="colorBackground" stylesheets="@../css/color.css">
+            <children>
+                <JFXButton layoutX="182.0" layoutY="14.0" onAction="#closeProgram" text="X" />
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
