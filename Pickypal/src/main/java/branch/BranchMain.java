@@ -11,7 +11,7 @@ public class BranchMain extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxml/branchManage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/headStock.fxml"));
         // fxml/testFX.fxml을 불러온다.
         Parent root = loader.load();
 
