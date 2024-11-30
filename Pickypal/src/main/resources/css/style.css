@@ -14,7 +14,7 @@
     -fx-border-width: 0px 0px 0px 3px;
 }
 .table-view .column-header,
-.table-view .column-header-background . filter{
+.table-view .column-header-background .filter{
     -fx-cell-size: 20;
     -fx-background-color: #7156DD;
 }

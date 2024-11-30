@@ -8,12 +8,17 @@ import javafx.stage.Stage;
 
 
 public class BranchMain extends Application {
-
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/headStock.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/branchManage.fxml"));
         // fxml/testFX.fxml을 불러온다.
         Parent root = loader.load();
+
+        BranchManageController controller = loader.getController();
+
+        // 데이터 추가
+        controller.addOrder("ORD004", "PRD004", "서울", "2024-11-01", "2024-11-05");
+        controller.addOrder("ORD005", "PRD005", "부산", "2024-11-02", "2024-11-06");
 
         // 기본 타이틀바 제거
 //        primaryStage.initStyle(StageStyle.UNDECORATED);
