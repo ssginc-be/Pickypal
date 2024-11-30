@@ -6,16 +6,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="branch.BranchReadController">
-   <children>
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="branch.BranchManageController">
+    <children>
        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-       <children>
-           <BorderPane prefHeight="768.0" prefWidth="1024.0">
-               <left>
-                   <VBox prefHeight="700.0" prefWidth="200.0" style="-fx-background-color: #6F5CC2;" stylesheets="@../css/style.css" BorderPane.alignment="CENTER">
-                       <children>
-                           <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="재고 조회" textFill="WHITE">
-                               <VBox.margin>
+           <children>
+               <BorderPane prefHeight="768.0" prefWidth="1024.0">
+                   <left>
+                       <VBox fx:id="change" prefHeight="700.0" prefWidth="200.0" style="-fx-background-color: #6F5CC2;" stylesheets="@../css/style.css" BorderPane.alignment="CENTER">
+                           <children>
+                               <Button onAction="#readStockButtonClick" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="재고 조회" textFill="WHITE">
+                                   <VBox.margin>
                                    <Insets />
                                </VBox.margin>
                            <graphic>
@@ -29,7 +29,7 @@
                               <Font name="SUIT Light" size="16.0" />
                            </font>
                            </Button>
-                           <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="입고 등록" textFill="WHITE">
+                           <Button onAction="#incomingRegistButtonClick" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="입고 관리" textFill="WHITE">
                            <font>
                               <Font name="SUIT Light" size="16.0" />
                            </font>
@@ -38,8 +38,9 @@
                                  <image>
                                     <Image url="@../../../../../MiniProject/src/main/resources/img/LogoExample.png" />
                                  </image></ImageView>
-                           </graphic></Button>
-                           <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="출고 등록" textFill="WHITE">
+                           </graphic>
+                           </Button>
+                           <Button onAction="#outgoingRegistButtonClick" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="출고 관리" textFill="WHITE">
                            <font>
                               <Font name="SUIT Light" size="16.0" />
                            </font>
@@ -48,8 +49,9 @@
                                  <image>
                                     <Image url="@../../../../../MiniProject/src/main/resources/img/LogoExample.png" />
                                  </image></ImageView>
-                           </graphic></Button>
-                           <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="지점 정보 관리" textFill="WHITE">
+                           </graphic>
+                           </Button>
+                           <Button onAction="#branchManageButtonClick" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="지점 정보 관리" textFill="WHITE">
                            <font>
                               <Font name="SUIT Light" size="16.0" />
                            </font>
@@ -58,8 +60,9 @@
                                  <image>
                                     <Image url="@../../../../../MiniProject/src/main/resources/img/LogoExample.png" />
                                  </image></ImageView>
-                           </graphic></Button>
-                           <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="납품업체 정보 관리" textFill="WHITE">
+                           </graphic>
+                           </Button>
+                           <Button onAction="#supplierManageButtonClick" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="납품업체 정보 관리" textFill="WHITE">
                            <font>
                               <Font name="SUIT Light" size="16.0" />
                            </font>
@@ -68,7 +71,8 @@
                                  <image>
                                     <Image url="@../../../../../MiniProject/src/main/resources/img/LogoExample.png" />
                                  </image></ImageView>
-                           </graphic></Button>
+                           </graphic>
+                           </Button>
                        </children>
                    </VBox>
                </left>
@@ -82,7 +86,11 @@
                      </children></HBox>
                </top>
                <center>
-                   <VBox prefHeight="700.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+<!--               자주 수정하는 내용들 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    -->
+<!--               자주 수정하는 내용들 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    -->
+<!--               자주 수정하는 내용들 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    -->
+<!--               자주 수정하는 내용들 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    -->
+                   <VBox fx:id="changePane" prefHeight="700.0" prefWidth="800.0" BorderPane.alignment="CENTER">
                        <children>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
@@ -138,6 +146,8 @@
                            </TableView>
                        </children>
                    </VBox>
+                   <!--               자주 수정하는 내용들 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    -->
+                   <!--               자주 수정하는 내용들 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    -->
                </center>
            </BorderPane>
        </children>
