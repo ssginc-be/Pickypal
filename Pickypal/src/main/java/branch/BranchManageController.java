@@ -6,11 +6,13 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.layout.VBox;
 
-public class BranchReadController {
+public class BranchManageController {
 
     @FXML
     private TableView<Order> orderTable;
@@ -33,10 +35,16 @@ public class BranchReadController {
     @FXML
     private TableColumn<Order, String> updatedAtColumn;
 
+    private ObservableList<Order> orders = FXCollections.observableArrayList();
+
     public void initialize() {
         // CheckBox 컬럼 설정
         selectColumn.setCellValueFactory(cellData -> cellData.getValue().selectedProperty());
         selectColumn.setCellFactory(CheckBoxTableCell.forTableColumn(selectColumn));
+        selectColumn.setEditable(true);
+
+        // 테이블 자체를 수정 가능하도록 설정
+        orderTable.setEditable(true);
 
         // 다른 컬럼 데이터 바인딩
         branchIdColumn.setCellValueFactory(cellData -> cellData.getValue().branchIdProperty());
@@ -46,7 +54,7 @@ public class BranchReadController {
         updatedAtColumn.setCellValueFactory(cellData -> cellData.getValue().updatedAtProperty());
 
         // 데이터 초기화
-        ObservableList<Order> orders = FXCollections.observableArrayList(
+        orders = FXCollections.observableArrayList(
                 new Order(false, "ORD001", "PRD001", "강남", "2024-10-11", "2024-10-13"),
                 new Order(false, "ORD002", "PRD002", "구리", "2024-10-12", "2024-10-15"),
                 new Order(false, "ORD003", "PRD003", "천안", "2024-10-13", "2024-10-19")
@@ -55,9 +63,14 @@ public class BranchReadController {
         orderTable.setItems(orders);
     }
 
+    // 다른 클래스에서 호출 가능한 데이터 추가 메서드
+    public void addOrder(String branchId, String branchName, String address, String createAt, String updatedAt) {
+        // 새 Order 객체를 리스트에 추가
+        orders.add(new Order(false, branchId, branchName, address, createAt, updatedAt));
+    }
+
     public static class Order {
         @FXML
-        private TableView<Order> orderTable;
         private final SimpleBooleanProperty selected;
         private final SimpleStringProperty branchId;
         private final SimpleStringProperty branchName;
@@ -96,6 +109,79 @@ public class BranchReadController {
 
         public ObservableValue<String> updatedAtProperty() {
             return updatedAt;
+        }
+    }
+
+    @FXML
+    private VBox changePane;
+
+    public void readStockButtonClick() {
+        try {
+            // 다른 FXML 파일 로드
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/readStock.fxml"));
+            VBox newContent = loader.load();
+
+            // 기존 VBox 내용을 새로운 화면으로 교체
+            changePane.getChildren().clear();
+            changePane.getChildren().add(newContent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void incomingRegistButtonClick() {
+        try {
+            // 다른 FXML 파일 로드
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/incomingRegist.fxml"));
+            VBox newContent = loader.load();
+
+            // 기존 VBox 내용을 새로운 화면으로 교체
+            changePane.getChildren().clear();
+            changePane.getChildren().add(newContent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void outgoingRegistButtonClick() {
+        try {
+            // 다른 FXML 파일 로드
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/outgoingRegist.fxml"));
+            VBox newContent = loader.load();
+
+            // 기존 VBox 내용을 새로운 화면으로 교체
+            changePane.getChildren().clear();
+            changePane.getChildren().add(newContent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void branchManageButtonClick() {
+        try {
+            // 다른 FXML 파일 로드
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/branchManage2.fxml"));
+            VBox newContent = loader.load();
+
+            // 기존 VBox 내용을 새로운 화면으로 교체
+            changePane.getChildren().clear();
+            changePane.getChildren().add(newContent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void supplierManageButtonClick() {
+        try {
+            // 다른 FXML 파일 로드
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/supplierManage.fxml"));
+            VBox newContent = loader.load();
+
+            // 기존 VBox 내용을 새로운 화면으로 교체
+            changePane.getChildren().clear();
+            changePane.getChildren().add(newContent);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
