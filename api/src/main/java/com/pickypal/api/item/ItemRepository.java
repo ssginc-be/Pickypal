@@ -1,4 +1,4 @@
-package com.pickypal.api.domain.item;
+package com.pickypal.api.item;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
