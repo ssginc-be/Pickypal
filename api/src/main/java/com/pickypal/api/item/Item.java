@@ -1,5 +1,6 @@
 package com.pickypal.api.item;
 
+import com.pickypal.api.supplier.Supplier;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,7 +26,9 @@ public class Item {
     @Column(name="item_id")
     private String id;
 
-    private String supplierName;
+    @ManyToOne
+    @JoinColumn(name="supplier_id")
+    private Supplier supplier;
 
     private String name;
 

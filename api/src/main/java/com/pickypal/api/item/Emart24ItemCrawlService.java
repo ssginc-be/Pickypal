@@ -2,6 +2,8 @@ package com.pickypal.api.item;
 
 import com.pickypal.api.item.Item;
 import com.pickypal.api.item.ItemRepository;
+import com.pickypal.api.supplier.Supplier;
+import com.pickypal.api.supplier.SupplierRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
@@ -14,6 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Queue-ri
@@ -24,6 +27,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class Emart24ItemCrawlService {
     private final ItemRepository iRepo;
+    private final SupplierRepository sRepo;
 
     // 한 페이지 단위로 크롤링하여 List 형태로 역직렬화
     private List<List<String>> fetchEventItemSinglePage(int page) throws IOException {
@@ -92,7 +96,13 @@ public class Emart24ItemCrawlService {
                     System.out.println("tag: " + tag);
 
                     item.setId(iid);
-                    item.setSupplierName(supplierName);
+
+                    Optional<Supplier> optSupplier = sRepo.findByName(supplierName);
+                    if (optSupplier.isPresent())
+                        item.setSupplier(optSupplier.get());
+                    else
+                        item.setSupplier(null);
+
                     item.setName(name);
                     item.setType("행사 상품");
                     item.setPrice(parsedPrice);
