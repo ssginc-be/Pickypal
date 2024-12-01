@@ -6,9 +6,11 @@ spring:
     username: root
     password: Abcd123!
 
+  sql.init.mode: always
 
   jpa:
     open-in-view: true
+    defer-datasource-initialization: true
     hibernate:
       ddl-auto: create
     show-sql: true

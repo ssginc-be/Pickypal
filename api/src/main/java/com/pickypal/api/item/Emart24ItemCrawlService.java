@@ -66,38 +66,20 @@ public class Emart24ItemCrawlService {
         int page = 1;
         long itemNo = 1L;
         while (true) {
-            try {
-                List<List<String>> eList = fetchEventItemSinglePage(page++);
-                if (eList == null) break;
-                List<Item> entities = new ArrayList<>();
+            List<List<String>> eList = fetchEventItemSinglePage(page++);
+            if (eList == null) break;
+            List<Item> entities = new ArrayList<>();
 
-                for (List<String> e : eList) {
+            for (List<String> e : eList) {
+                try {
                     Item item = new Item();
+
                     String name = e.get(1);
+                    int parsedPrice = Integer.parseInt(e.get(2)); // 파싱 안되면 버림
 
-                    // e.get(2)가 int로 파싱되지 않으면 e.get(1)과 space 두고 concat
-                    int parsedPrice = -1;
-                    try {
-                        parsedPrice = Integer.parseInt(e.get(2));
-
-                    } catch (Exception ex) {
-                        // concat 필요, e.get(3)가 price가 됨
-                        name = name.concat(" " + e.get(2));
-                        parsedPrice = Integer.parseInt(e.get(3));
-                    }
-
-                    // event item은 납품처명 다 있음
                     String[] splitted = name.split("\\)", 2); // 한 번만 split
-                    String supplierName;
-
-                    if (splitted.length == 1) {
-                        supplierName = null;
-                        name = splitted[0];
-                    }
-                    else {
-                        supplierName = splitted[0];
-                        name = splitted[1];
-                    }
+                    String supplierName = splitted[0];
+                    name = splitted[1]; // splitted 길이가 2보다 작으면 버림
 
                     String iid = "EVENT_" + String.format("%05d", itemNo);
                     String tag = e.get(0);
@@ -112,16 +94,18 @@ public class Emart24ItemCrawlService {
                     item.setId(iid);
                     item.setSupplierName(supplierName);
                     item.setName(name);
+                    item.setType("행사 상품");
                     item.setPrice(parsedPrice);
                     item.setTag(tag);
                     entities.add(item);
                     itemNo += 1;
+                } catch (Exception exception) {
+                    // drop row: 강사님이 자잘한 예외는 버리라고 하셨음
+                    exception.printStackTrace();
                 }
-                iRepo.saveAll(entities);
-            } catch (Exception exception) {
-                // drop row: 강사님이 자잘한 예외는 버리라고 하셨음
-                exception.printStackTrace();
-            }
+            } // end of forEach
+
+            iRepo.saveAll(entities);
         }
 
         log.info("* * * saveItems: Saved all");

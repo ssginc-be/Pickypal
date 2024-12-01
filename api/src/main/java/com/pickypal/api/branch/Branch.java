@@ -1,5 +1,6 @@
-package com.pickypal.api.item;
+package com.pickypal.api.branch;
 
+import com.pickypal.api.item.Item;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,20 +21,17 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Item {
+public class Branch {
     @Id
-    @Column(name="item_id")
+    @Column(name="branch_id")
     private String id;
-
-    private String supplierName;
 
     private String name;
 
-    private String type;
+    private String address;
 
-    private Integer price;
-
-    private String tag;
+    @Column(columnDefinition="VARCHAR(15)")
+    private String tel;
 
     @LastModifiedDate
     private LocalDateTime lastModifiedAt;
