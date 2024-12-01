@@ -29,6 +29,8 @@ public class Item {
 
     private String name;
 
+    private String type;
+
     private Integer price;
 
     private String tag;
