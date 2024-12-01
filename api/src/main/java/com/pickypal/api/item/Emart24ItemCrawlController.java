@@ -1,4 +1,4 @@
-package com.pickypal.api.domain.item;
+package com.pickypal.api.item;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

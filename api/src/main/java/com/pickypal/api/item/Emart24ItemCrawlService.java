@@ -1,7 +1,7 @@
-package com.pickypal.api.domain.item;
+package com.pickypal.api.item;
 
-import com.pickypal.api.domain.item.Item;
-import com.pickypal.api.domain.item.ItemRepository;
+import com.pickypal.api.item.Item;
+import com.pickypal.api.item.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
