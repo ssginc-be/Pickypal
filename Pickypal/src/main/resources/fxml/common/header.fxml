@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+
+<HBox alignment="CENTER" prefHeight="68.0" prefWidth="1024.0" spacing="20.0" style="-fx-background-color: #52438F;" BorderPane.alignment="CENTER">
+    <children>
+        <ImageView fitHeight="67.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../icon/logo.png" />
+            </image>
+        </ImageView>
+        <!-- 제목 -->
+        <Label style="-fx-font-size: 30; -fx-text-fill: white;" text="발주 관리" />
+        <Region HBox.hgrow="ALWAYS" />
+        <!-- 로그인 정보  -->
+        <Label style="-fx-font-size: 12; -fx-text-fill: white;" text="로그인 정보" />
+        <!-- 로그아웃 버튼 -->
+        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="101.0" text="로그아웃" textFill="Black" />
+    </children>
+    <padding>
+        <Insets left="50.0" right="10.0" />
+    </padding>
+</HBox>
