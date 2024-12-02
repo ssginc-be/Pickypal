@@ -30,4 +30,13 @@ public class OrdersController {
         return service.getByPage(uid, pageable);
     }
 
+    // 발주 등록
+    @PostMapping
+    public void save(
+            @RequestHeader("Authorization") String tokenHeader,
+            @RequestBody OrdersSaveRequestDto dto) {
+        String uid = jwtKit.validate(tokenHeader);
+        service.save(uid, dto);
+    }
+
 }

@@ -33,6 +33,8 @@ import java.util.List;
 public class OrdersService {
     private final OrdersRepository oRepo;
     private final ServiceUserRepository uRepo;
+    private final ItemRepository iRepo;
+    private final BranchRepository bRepo;
 
     // page 단위로 요청자 지점의 발주 내역을 조회하는 api
     // ex) 1 page = 1~20 row / 2 page = 21~30 row ...
@@ -54,5 +56,31 @@ public class OrdersService {
         return ResponseEntity
                 .status(HttpStatus.ACCEPTED.value())
                 .body(dto);
+    }
+
+    // 발주 등록
+    public ResponseEntity<?> save(String uid, OrdersSaveRequestDto dto) {
+        String itemId = dto.getItemId();
+        Item item;
+        // client에서 이상한 item id를 줬을 경우 예외 처리 - 400 반환
+        try {
+            item = iRepo.findById(itemId).get();
+        } catch (Exception e) {
+            log.error("* * * OrdersService: order save failed - could not find requested item id");
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        Orders orders = new Orders();
+        ServiceUser user = uRepo.findById(uid).get();
+        orders.setBranch(bRepo.findById(user.getBranch().getId()).get());
+        orders.setItem(item);
+        orders.setQuantity(dto.getQuantity());
+        orders.setPrice(dto.getQuantity() * item.getPrice());
+
+        oRepo.save(orders);
+        
+        // 발주 정상 등록 - 200 반환
+        log.info("* * * OrdersService: order save done");
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
