@@ -33,7 +33,7 @@ test {
 }
 
 application {
-    mainClassName = 'branch.BranchMain'  // Main 클래스 경로
+    mainClassName = 'PickypalMain'  // Main 클래스 경로
 }
 
 javafx {
