@@ -40,7 +40,7 @@ public class OrdersService {
         // 나머지 테이블 조회
         ServiceUser user = uRepo.findById(uid).get();
         String branchId = user.getBranch().getId();
-        Page<Orders> pageData = oRepo.findPageBy(pageable);
+        Page<Orders> pageData = oRepo.findPageByBranchId(pageable, branchId);
 
         // client에서 파싱 용이하도록 필요한 정보만 선별하여 dto로 변환
         OrdersViewResponseDto dto = new OrdersViewResponseDto(

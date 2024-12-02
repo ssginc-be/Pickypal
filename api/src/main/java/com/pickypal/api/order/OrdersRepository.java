@@ -13,7 +13,7 @@ public interface OrdersRepository extends JpaRepository<Orders, Long> {
 
     // 특정 지점id에 해당하는 page 단위 발주 내역 조회
     // ex) 1 page = 1~20 row / 2 page = 21~30 row ...
-    Page<Orders> findPageBy(Pageable pageable);
+    Page<Orders> findPageByBranchId(Pageable pageable, String branchId);
 
     // 특정 지점id에 해당하는 page 단위 발주 내역 조회: 상품 id로 필터링
     Page<Orders> findAllByBranchIdAndItemId(Pageable pageable, String branchId, String itemId);
