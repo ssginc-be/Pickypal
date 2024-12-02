@@ -14,7 +14,7 @@ import java.io.IOException;
 @SpringBootApplication
 
 public class ApiApplication {
-	
+
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(ApiApplication.class, args);
 
