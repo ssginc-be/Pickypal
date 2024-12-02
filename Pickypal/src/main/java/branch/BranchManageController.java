@@ -35,6 +35,7 @@ public class BranchManageController {
     @FXML
     private TableColumn<Order, String> updatedAtColumn;
 
+    @FXML
     private ObservableList<Order> orders = FXCollections.observableArrayList();
 
     public void initialize() {

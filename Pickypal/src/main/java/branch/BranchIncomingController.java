@@ -33,6 +33,7 @@ public class BranchIncomingController {
     @FXML
     private TableColumn<Product, String> incomingDateColumn;
 
+
     public ComboBox<String> productCategoryComboBox;
 
     public Label loginInfoLabel;
