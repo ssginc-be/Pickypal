@@ -16,5 +16,4 @@ import java.util.List;
 public class OrdersViewResponseDto {
     private List<Orders> content;
     private Integer currentPage;
-    private Integer totalPageSize;
 }

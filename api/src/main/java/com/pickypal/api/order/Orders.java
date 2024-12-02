@@ -42,7 +42,7 @@ public class Orders {
 
     private Integer quantity;
 
-    private Integer price;
+    private Integer totalPrice;
     
     @ColumnDefault("'출고대기'")
     private String status;

@@ -26,6 +26,36 @@ public class OrdersController {
         return service.getByPage(uid, pageIdx);
     }
 
+    // 발주 조회: 상품 id로 필터링
+    @GetMapping("/item-id/{pageIdx}")
+    public ResponseEntity<?> getByPageWithItemIdFilter(
+            @RequestHeader("Authorization") String tokenHeader,
+            @PathVariable("pageIdx") Integer pageIdx,
+            @RequestParam("item_id") String itemId) {
+        String uid = jwtKit.validate(tokenHeader);
+        return service.getByPageWithItemIdFilter(uid, pageIdx, itemId);
+    }
+
+    // 발주 조회: 상품명으로 필터링
+    @GetMapping("/item-name/{pageIdx}")
+    public ResponseEntity<?> getByPageWithItemNameFilter(
+            @RequestHeader("Authorization") String tokenHeader,
+            @PathVariable("pageIdx") Integer pageIdx,
+            @RequestParam("item_name") String itemName) {
+        String uid = jwtKit.validate(tokenHeader);
+        return service.getByPageWithItemNameFilter(uid, pageIdx, itemName);
+    }
+
+    // 발주 조회: 발주일로 필터링
+    @GetMapping("/date/{pageIdx}")
+    public ResponseEntity<?> getByPageWithOrderTimeFilter(
+            @RequestHeader("Authorization") String tokenHeader,
+            @PathVariable("pageIdx") Integer pageIdx,
+            @RequestParam("date") String date) {
+        String uid = jwtKit.validate(tokenHeader);
+        return service.getByPageWithOrderTimeFilter(uid, pageIdx, date);
+    }
+
     // 발주 등록
     @PostMapping
     public void save(
