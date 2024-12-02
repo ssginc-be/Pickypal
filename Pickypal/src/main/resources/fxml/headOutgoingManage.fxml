@@ -113,7 +113,7 @@
                                         <TableColumn prefWidth="195.0" text="입고 날짜" />
                                     </columns>
                                 </TableView>
-                        <Pagination prefHeight="7.0" prefWidth="824.0" />
+                                <Pagination prefHeight="7.0" prefWidth="824.0" />
                             </children>
                         </VBox>
                     </center>
