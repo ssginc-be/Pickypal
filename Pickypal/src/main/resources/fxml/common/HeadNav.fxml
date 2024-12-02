@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- Head Nav -->
+<VBox xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="common.NavController" prefHeight="700.0" prefWidth="200.0" style="-fx-background-color: #6F5CC2;" stylesheets="@../../css/common.css">
+    <children>
+        <Button onAction="#moveToHeadStock" fx:id="headStockBtn" text="재고 조회" textFill="WHITE" prefHeight="50.0" prefWidth="200.0" />
+        <Button onAction="#moveToIncomingManage" fx:id="incomingManageBtn" text="입고 관리" textFill="WHITE" prefHeight="50.0" prefWidth="200.0" />
+        <Button onAction="#moveToOutgoingManage" fx:id="outgoingManageBtn" text="출고 관리" textFill="WHITE" prefHeight="50.0" prefWidth="200.0" />
+        <Button onAction="#moveToBranchManage" fx:id="branchManageBtn" text="지점 정보 관리" textFill="WHITE" prefHeight="50.0" prefWidth="200.0" />
+        <Button onAction="#moveToSupplierManage" fx:id="supplierManageBtn" text="납품 업체 정보 관리" textFill="WHITE" prefHeight="50.0" prefWidth="200.0" />
+    </children>
+</VBox>

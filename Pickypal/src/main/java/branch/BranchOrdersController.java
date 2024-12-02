@@ -9,7 +9,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.CheckBoxTableCell;
@@ -195,7 +194,7 @@ public class BranchOrdersController {
     public void enrollOrder() {
         try {
             // FXML 파일을 로드
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/branchOrdersRegist.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/branch/BranchOrdersRegist.fxml"));
             VBox newContent = loader.load();
 
             // 새로운 Stage 생성 (팝업용 창)

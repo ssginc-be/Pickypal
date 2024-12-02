@@ -6,7 +6,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.geometry.Insets?>
 
-<HBox alignment="CENTER" prefHeight="68.0" prefWidth="1024.0" spacing="20.0" style="-fx-background-color: #52438F;" BorderPane.alignment="CENTER">
+<!-- Header -->
+<HBox xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" prefHeight="68.0" prefWidth="1024.0" spacing="20.0" style="-fx-background-color: #52438F;" BorderPane.alignment="CENTER">
     <children>
         <ImageView fitHeight="67.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -14,7 +15,8 @@
             </image>
         </ImageView>
         <!-- 제목 -->
-        <Label style="-fx-font-size: 30; -fx-text-fill: white;" text="발주 관리" />
+        <!-- nav에서 가져와서 text 입력됨 -->
+        <Label fx:id="titleLabel" style="-fx-font-size: 30; -fx-text-fill: white;" text="" />
         <Region HBox.hgrow="ALWAYS" />
         <!-- 로그인 정보  -->
         <Label style="-fx-font-size: 12; -fx-text-fill: white;" text="로그인 정보" />

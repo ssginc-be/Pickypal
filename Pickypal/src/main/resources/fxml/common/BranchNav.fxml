@@ -3,9 +3,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefHeight="700.0" prefWidth="200.0" style="-fx-background-color: #6F5CC2;" stylesheets="@../../css/common.css" BorderPane.alignment="CENTER">
+<!-- Branch Nav -->
+<VBox prefHeight="700.0" prefWidth="200.0" style="-fx-background-color: #6F5CC2;" stylesheets="@../../css/common.css" >
     <children>
-        <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="재고 조회" textFill="WHITE" />
+        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="재고 조회" textFill="WHITE" />
         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="입고 관리" textFill="WHITE" />
         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="출고 관리" textFill="WHITE" />
         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="발주 관리" textFill="WHITE" />

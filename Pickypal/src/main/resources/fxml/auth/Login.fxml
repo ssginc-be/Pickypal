@@ -8,7 +8,8 @@
 <?import javafx.scene.paint.Stop?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.LoginController">
+<!-- 로그인 UI -->
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="auth.LoginController">
     <children>
         <AnchorPane layoutX="224.0" layoutY="76.0" prefHeight="249.0" prefWidth="310.0" style="-fx-background-radius: 25; -fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
             <children>
@@ -48,10 +49,10 @@
                         </LinearGradient>
                     </focusColor>
                 </JFXPasswordField>
-                <JFXButton buttonType="RAISED" layoutX="112.0" layoutY="176.0" prefHeight="41.0" prefWidth="87.0" styleClass="colorBackground" stylesheets="@../css/color.css" text="Login" />
+                <JFXButton buttonType="RAISED" layoutX="112.0" layoutY="176.0" prefHeight="41.0" prefWidth="87.0" styleClass="colorBackground" stylesheets="@../../css/color.css" text="Login" />
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="sideBar" layoutX="31.0" layoutY="53.0" prefHeight="295.0" prefWidth="220.0" style="-fx-background-radius: 25;" styleClass="colorBackground" stylesheets="@../css/color.css">
+        <AnchorPane fx:id="sideBar" layoutX="31.0" layoutY="53.0" prefHeight="295.0" prefWidth="220.0" style="-fx-background-radius: 25;" styleClass="colorBackground" stylesheets="@../../css/color.css">
             <children>
                 <JFXButton layoutX="182.0" layoutY="14.0" onAction="#closeProgram" text="X" />
             </children>

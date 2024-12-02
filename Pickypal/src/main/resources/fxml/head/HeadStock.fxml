@@ -4,40 +4,41 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@../css/style.css" fx:controller="branch.BranchOrdersController">
+<!-- (본사) 재고 조회 -->
+ <AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="common.NavController" >
     <children>
         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
             <children>
                 <BorderPane prefHeight="768.0" prefWidth="1024.0">
                     <!-- 공통 nav -->
                     <left>
-                    <fx:include source="common/nav.fxml" />
+                        <fx:include source="../common/HeadNav.fxml" />
                     </left>
                     <!-- 공통 header -->
                     <top>
-                        <fx:include source="common/header.fxml" />
+                        <fx:include source="../common/Header.fxml" />
                     </top>
                     <center>
-                        <VBox prefHeight="700.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+                        <VBox fx:id="changePane" prefHeight="700.0" prefWidth="800.0" BorderPane.alignment="CENTER">
                             <children>
                                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                     <children>
                                         <Button layoutX="751.0" layoutY="63.0" mnemonicParsing="false" text="Excel" />
-                                        <Button layoutX="643.0" layoutY="63.0" mnemonicParsing="false" onAction="#deleteSelectedOrder" text="발주 삭제" />
-                                        <TextField fx:id="productIDField" layoutX="80.0" layoutY="21.0" />
+                                        <Button layoutX="667.0" layoutY="63.0" mnemonicParsing="false" text="검색" />
+                                        <TextField layoutX="80.0" layoutY="21.0" />
                                         <Text layoutX="30.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="상품 ID">
                                             <font>
                                                 <Font name="SUIT Medium" size="12.0" />
                                             </font>
                                         </Text>
-                                        <TextField fx:id="productNameField" layoutX="319.0" layoutY="21.0" />
+                                        <TextField layoutX="319.0" layoutY="21.0" />
                                         <Text layoutX="272.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="상품명">
                                             <font>
                                                 <Font name="SUIT Medium" size="12.0" />
                                             </font>
                                         </Text>
-                                        <DatePicker fx:id="orderDatePicker" focusTraversable="false" layoutX="575.0" layoutY="20.0" />
-                                        <Text layoutX="510.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="발주 날짜">
+                                        <DatePicker focusTraversable="false" layoutX="575.0" layoutY="20.0" />
+                                        <Text layoutX="510.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="입고 날짜">
                                             <font>
                                                 <Font name="SUIT Medium" size="12.0" />
                                             </font>
@@ -48,31 +49,26 @@
                                             </font>
                                         </Text>
                                         <ComboBox fx:id="productCategoryComboBox" layoutX="80.0" layoutY="63.0" prefHeight="29.0" prefWidth="124.0" promptText="카테고리" />
-                              <Button layoutX="463.0" layoutY="63.0" mnemonicParsing="false" text="검색" />
-                              <Button layoutX="540.0" layoutY="63.0" mnemonicParsing="false" onAction="#enrollOrder" text="발주 등록" />
                                     </children>
                                 </AnchorPane>
-                                <TableView fx:id="ordersTable" prefHeight="652.0" prefWidth="824.0">
+                                <TableView fx:id="branchIncomingTable" prefHeight="652.0" prefWidth="824.0">
                                     <columns>
                                         <!-- 선택 (체크박스) 컬럼 -->
                                         <TableColumn fx:id="selectColumn" prefWidth="47.0" text="선택" />
-                                        <!-- 발주 ID 컬럼 -->
-                                        <TableColumn fx:id="ordersIDColumn" prefWidth="76.0" text="발주 ID" />
                                         <!-- 상품 ID 컬럼 -->
-                                        <TableColumn fx:id="productIDColumn" prefWidth="108.0" text="상품 ID" />
+                                        <TableColumn fx:id="productIdColumn" prefWidth="76.0" text="상품 ID" />
                                         <!-- 상품명 컬럼 -->
-                                        <TableColumn fx:id="productNameColumn" prefWidth="114.0" text="상품명" />
-                                        <!-- 발주 수량 컬럼 -->
-                                        <TableColumn fx:id="ordersAmountColumn" minWidth="5.0" prefWidth="107.0" text="발주 수량" />
-                                        <!-- 단가 컬럼 -->
-                                        <TableColumn fx:id="priceColumn" prefWidth="83.0" text="단가" />
-                                        <!-- 발주 상태 컬럼 -->
-                                        <TableColumn fx:id="ordersStatusColumn" prefWidth="93.0" text="발주 상태" />
-                                        <!-- 발주 날짜 컬럼 -->
-                                        <TableColumn fx:id="ordersDateColumn" prefWidth="195.0" text="발주 날짜" />
+                                        <TableColumn fx:id="productNameColumn" prefWidth="108.0" text="상품 유형" />
+                                        <!-- 입고 수량 컬럼 -->
+                                        <TableColumn fx:id="incomingQuantityColumn" prefWidth="114.0" text="납품처" />
+                                        <!-- 입고 날짜 컬럼 -->
+                                        <TableColumn fx:id="incomingDateColumn" minWidth="5.0" prefWidth="107.0" text="상품명" />
+                                        <TableColumn prefWidth="83.0" text="가격" />
+                                        <TableColumn prefWidth="93.0" text="재고 수량" />
+                                        <TableColumn prefWidth="195.0" text="입고 날짜" />
                                     </columns>
                                 </TableView>
-                                <Pagination prefHeight="7.0" prefWidth="824.0" />
+                        <Pagination prefHeight="7.0" prefWidth="824.0" />
                             </children>
                         </VBox>
                     </center>

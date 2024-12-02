@@ -1,19 +1,18 @@
-package branch;
-
+import common.NavController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class BranchMain extends Application {
+public class PickypalMain extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/branchOrdersManage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/head/HeadStock.fxml"));
         // fxml/testFX.fxml을 불러온다.
         Parent root = loader.load();
 
-        BranchOrdersController controller = loader.getController();
+        NavController controller = loader.getController();
 
         // GUI에 보일 프로그램 제목을 설정한다.
         primaryStage.setTitle("Pickypal");
