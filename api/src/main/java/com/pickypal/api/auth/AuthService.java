@@ -119,10 +119,19 @@ public class AuthService {
         user.setRole(dto.getRole());
 
         Branch branch;
-        try {
-            branch = bRepo.findById(dto.getBranchId()).get();
-        } catch (Exception e) {
-            log.error("* * * AuthService: signup failed - branch id not found");
+        if (dto.getRole().equals("BRANCH")) {
+            try {
+                branch = bRepo.findById(dto.getBranchId()).get();
+            } catch (Exception e) {
+                log.error("* * * AuthService: signup failed - branch id not found");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+        }
+        else if (dto.getRole().equals("HEAD")) {
+            branch = null;
+        }
+        else {
+            log.error("* * * AuthService: signup failed - invalid role value");
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         user.setBranch(branch);
