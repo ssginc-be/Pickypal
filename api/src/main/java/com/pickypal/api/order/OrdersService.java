@@ -1,22 +1,14 @@
 package com.pickypal.api.order;
 
-import com.pickypal.api.auth.LoginResponseDto;
-import com.pickypal.api.branch.Branch;
 import com.pickypal.api.branch.BranchRepository;
 import com.pickypal.api.item.Item;
 import com.pickypal.api.item.ItemRepository;
-import com.pickypal.api.stock.BranchStock;
-import com.pickypal.api.stock.BranchStockRepository;
-import com.pickypal.api.stock.HeadStock;
-import com.pickypal.api.stock.HeadStockRepository;
 import com.pickypal.api.user.ServiceUser;
 import com.pickypal.api.user.ServiceUserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -39,7 +31,11 @@ public class OrdersService {
 
     // page 단위로 요청자 지점의 발주 내역을 조회하는 api
     // ex) 1 page = 1~20 row / 2 page = 21~30 row ...
-    public ResponseEntity<?> getByPage(String uid, Pageable pageable) {
+    public ResponseEntity<?> getByPage(String uid, Integer pageIdx) {
+        // Pageable 설정
+        Pageable pageable = PageRequest.of(pageIdx, 20, Sort.by(Sort.Direction.DESC, "orderTime"));
+
+        // 나머지 테이블 조회
         ServiceUser user = uRepo.findById(uid).get();
         String branchId = user.getBranch().getId();
         Page<Orders> pageData = oRepo.findPageBy(pageable);
