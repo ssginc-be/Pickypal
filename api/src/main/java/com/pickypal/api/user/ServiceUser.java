@@ -1,6 +1,6 @@
 package com.pickypal.api.user;
 
-import com.pickypal.api.branch.Branch;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

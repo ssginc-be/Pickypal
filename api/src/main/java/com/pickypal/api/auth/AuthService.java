@@ -2,8 +2,8 @@ package com.pickypal.api.auth;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pickypal.api.branch.Branch;
-import com.pickypal.api.branch.BranchRepository;
+//import com.pickypal.api.branch.Branch;
+//import com.pickypal.api.branch.BranchRepository;
 import com.pickypal.api.user.ServiceUser;
 import com.pickypal.api.user.ServiceUserRepository;
 import lombok.RequiredArgsConstructor;
