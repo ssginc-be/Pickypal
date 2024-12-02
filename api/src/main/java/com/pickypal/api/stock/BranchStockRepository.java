@@ -36,7 +36,7 @@ public interface BranchStockRepository extends JpaRepository<BranchStock, String
             "LIMIT :sdx, :size;", nativeQuery=true)
     List<BranchStock> findAllByBranchIdAndLastModifiedAt(@Param("branch_id") String branchId, @Param("date") String date, @Param("next_date") String nextDate, @Param("sdx") Integer startIdx, @Param("size") Integer size);
 
-    // 특정 지점id에 해당하는 page 단위 재고 조회: 상품명으로 필터링
+    // 특정 지점id에 해당하는 page 단위 재고 조회: 상품 유형으로 필터링
     @Query(value=
             "SELECT * FROM ( " +
             "SELECT bs.*, it.supplier_id, it.name, it.type, it.price, it.tag FROM branch_stock bs " +
