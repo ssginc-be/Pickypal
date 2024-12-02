@@ -11,6 +11,7 @@ import com.pickypal.api.stock.HeadStock;
 import com.pickypal.api.stock.HeadStockRepository;
 import com.pickypal.api.user.ServiceUser;
 import com.pickypal.api.user.ServiceUserRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -54,11 +55,12 @@ public class OrdersService {
         log.info("page: {}", pageable.getPageNumber());
 
         return ResponseEntity
-                .status(HttpStatus.ACCEPTED.value())
+                .status(HttpStatus.OK.value())
                 .body(dto);
     }
 
     // 발주 등록
+    @Transactional
     public ResponseEntity<?> save(String uid, OrdersSaveRequestDto dto) {
         String itemId = dto.getItemId();
         Item item;
@@ -81,6 +83,19 @@ public class OrdersService {
         
         // 발주 정상 등록 - 200 반환
         log.info("* * * OrdersService: order save done");
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    // 발주 삭제
+    @Transactional
+    public ResponseEntity<?> delete(String uid, Long orderId) {
+        ServiceUser user = uRepo.findById(uid).get();
+        String branchId = user.getBranch().getId();
+
+        oRepo.deleteByIdAndBranchId(orderId, branchId);
+
+        // 발주 정상 삭제 - 200 반환
+        log.info("* * * OrdersService: order delete done");
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

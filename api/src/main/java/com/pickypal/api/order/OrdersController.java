@@ -39,4 +39,13 @@ public class OrdersController {
         service.save(uid, dto);
     }
 
+    // 발주 삭제
+    @DeleteMapping("/{oid}")
+    public void delete(
+            @RequestHeader("Authorization") String tokenHeader,
+            @PathVariable("oid") Long orderId) {
+        String uid = jwtKit.validate(tokenHeader);
+        service.delete(uid, orderId);
+    }
+
 }
