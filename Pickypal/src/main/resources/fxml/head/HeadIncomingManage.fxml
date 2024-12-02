@@ -5,7 +5,7 @@
 <?import javafx.scene.text.*?>
 
 <!-- (본사) 입고 등록 관리 -->
-<VBox xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="common.NavController" prefHeight="700.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+<VBox xmlns="http://javafx.com/javafx/21.0.5" xmlns:fx="http://javafx.com/fxml/1" fx:controller="common.NavController" prefHeight="700.0" prefWidth="800.0" BorderPane.alignment="CENTER">
     <children>
         <AnchorPane prefHeight="200.0" prefWidth="200.0">
             <children>

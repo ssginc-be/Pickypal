@@ -8,11 +8,9 @@ import javafx.stage.Stage;
 public class PickypalMain extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/head/HeadStock.fxml"));
-        // fxml/testFX.fxml을 불러온다.
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/auth/Login.fxml"));
+        // fxml/auth/Login.fxml을 불러온다.
         Parent root = loader.load();
-
-        NavController controller = loader.getController();
 
         // GUI에 보일 프로그램 제목을 설정한다.
         primaryStage.setTitle("Pickypal");

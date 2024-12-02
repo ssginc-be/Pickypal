@@ -3,7 +3,7 @@
 <?import javafx.scene.layout.*?>
 
 <!-- Head Nav -->
-<VBox xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="common.NavController" prefHeight="700.0" prefWidth="200.0" style="-fx-background-color: #6F5CC2;" stylesheets="@../../css/common.css">
+<VBox xmlns="http://javafx.com/javafx/21.0.5" xmlns:fx="http://javafx.com/fxml/1" fx:controller="common.NavController" prefHeight="700.0" prefWidth="200.0" style="-fx-background-color: #6F5CC2;" stylesheets="@../../css/common.css">
     <children>
         <Button onAction="#moveToHeadStock" fx:id="headStockBtn" text="재고 조회" textFill="WHITE" prefHeight="50.0" prefWidth="200.0" />
         <Button onAction="#moveToIncomingManage" fx:id="incomingManageBtn" text="입고 관리" textFill="WHITE" prefHeight="50.0" prefWidth="200.0" />

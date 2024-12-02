@@ -7,7 +7,7 @@
 <?import javafx.geometry.Insets?>
 
 <!-- Header -->
-<HBox xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" prefHeight="68.0" prefWidth="1024.0" spacing="20.0" style="-fx-background-color: #52438F;" BorderPane.alignment="CENTER">
+<HBox xmlns="http://javafx.com/javafx/21.0.5" xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" prefHeight="68.0" prefWidth="1024.0" spacing="20.0" style="-fx-background-color: #52438F;" BorderPane.alignment="CENTER">
     <children>
         <ImageView fitHeight="67.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
             <image>
