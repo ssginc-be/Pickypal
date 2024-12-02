@@ -1,69 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<!-- <AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="branch.BranchReadController"> -->
-
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@../css/style.css" fx:controller="branch.BranchOrdersController">
     <children>
         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
             <children>
                 <BorderPane prefHeight="768.0" prefWidth="1024.0">
+                    <!-- 공통 nav -->
                     <left>
-                        <VBox prefHeight="700.0" prefWidth="200.0" style="-fx-background-color: #6F5CC2;" stylesheets="@../css/style.css" BorderPane.alignment="CENTER">
-                            <children>
-                                <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="재고 조회" textFill="WHITE">
-                                    <VBox.margin>
-                                        <Insets />
-                                    </VBox.margin>
-                                    <graphic>
-                                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@../icon/stockInquery.png" />
-                                            </image>
-                                        </ImageView>
-                                    </graphic>
-                                    <font>
-                                        <Font name="SUIT Light" size="16.0" />
-                                    </font>
-                                </Button>
-                                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="입고 관리" textFill="WHITE" />
-                                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="출고 관리" textFill="WHITE" />
-                                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="발주 관리" textFill="WHITE" />
-                                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="판매 통계" textFill="WHITE" />
-                            </children>
-                        </VBox>
+                    <fx:include source="common/nav.fxml" />
                     </left>
+                    <!-- 공통 header -->
                     <top>
-                        <HBox alignment="CENTER" prefHeight="68.0" prefWidth="1024.0" spacing="20.0" style="-fx-background-color: #52438F;" BorderPane.alignment="CENTER">
-                            <children>
-                                <ImageView fitHeight="67.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../icon/logo.png" />
-                                    </image>
-                                </ImageView>
-                            </children>
-                            <children>
-                                <!-- 제목 -->
-                                <Label style="-fx-font-size: 30; -fx-text-fill: white;" text="발주 관리" />
-                                <Region HBox.hgrow="ALWAYS" />
-                                <!-- 로그인 정보  -->
-                                <Label style="-fx-font-size: 12; -fx-text-fill: white;" text="로그인 정보" />
-                                <!-- 로그아웃 버튼 -->
-                                <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="101.0" text="로그아웃" textFill="Black" />
-                            </children>
-                            <opaqueInsets>
-                                <Insets />
-                            </opaqueInsets>
-                            <padding>
-                                <Insets left="50.0" right="10.0" />
-                            </padding>
-                        </HBox>
+                        <fx:include source="common/header.fxml" />
                     </top>
                     <center>
                         <VBox prefHeight="700.0" prefWidth="800.0" BorderPane.alignment="CENTER">
@@ -71,20 +23,20 @@
                                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                     <children>
                                         <Button layoutX="751.0" layoutY="63.0" mnemonicParsing="false" text="Excel" />
-                                        <Button layoutX="643.0" layoutY="63.0" mnemonicParsing="false" text="발주 삭제" />
-                                        <TextField layoutX="80.0" layoutY="21.0" />
+                                        <Button layoutX="643.0" layoutY="63.0" mnemonicParsing="false" onAction="#deleteSelectedOrder" text="발주 삭제" />
+                                        <TextField fx:id="productIDField" layoutX="80.0" layoutY="21.0" />
                                         <Text layoutX="30.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="상품 ID">
                                             <font>
                                                 <Font name="SUIT Medium" size="12.0" />
                                             </font>
                                         </Text>
-                                        <TextField layoutX="319.0" layoutY="21.0" />
+                                        <TextField fx:id="productNameField" layoutX="319.0" layoutY="21.0" />
                                         <Text layoutX="272.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="상품명">
                                             <font>
                                                 <Font name="SUIT Medium" size="12.0" />
                                             </font>
                                         </Text>
-                                        <DatePicker focusTraversable="false" layoutX="575.0" layoutY="20.0" />
+                                        <DatePicker fx:id="orderDatePicker" focusTraversable="false" layoutX="575.0" layoutY="20.0" />
                                         <Text layoutX="510.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="발주 날짜">
                                             <font>
                                                 <Font name="SUIT Medium" size="12.0" />
@@ -97,24 +49,27 @@
                                         </Text>
                                         <ComboBox fx:id="productCategoryComboBox" layoutX="80.0" layoutY="63.0" prefHeight="29.0" prefWidth="124.0" promptText="카테고리" />
                               <Button layoutX="463.0" layoutY="63.0" mnemonicParsing="false" text="검색" />
-                              <Button layoutX="540.0" layoutY="63.0" mnemonicParsing="false" text="발주 등록" />
+                              <Button layoutX="540.0" layoutY="63.0" mnemonicParsing="false" onAction="#enrollOrder" text="발주 등록" />
                                     </children>
                                 </AnchorPane>
-                                <TableView fx:id="branchIncomingTable" prefHeight="652.0" prefWidth="824.0">
+                                <TableView fx:id="ordersTable" prefHeight="652.0" prefWidth="824.0">
                                     <columns>
                                         <!-- 선택 (체크박스) 컬럼 -->
                                         <TableColumn fx:id="selectColumn" prefWidth="47.0" text="선택" />
+                                        <!-- 발주 ID 컬럼 -->
+                                        <TableColumn fx:id="ordersIDColumn" prefWidth="76.0" text="발주 ID" />
                                         <!-- 상품 ID 컬럼 -->
-                                        <TableColumn fx:id="productIdColumn" prefWidth="76.0" text="발주 ID" />
+                                        <TableColumn fx:id="productIDColumn" prefWidth="108.0" text="상품 ID" />
                                         <!-- 상품명 컬럼 -->
-                                        <TableColumn fx:id="productNameColumn" prefWidth="108.0" text="상품 ID" />
-                                        <!-- 입고 수량 컬럼 -->
-                                        <TableColumn fx:id="incomingQuantityColumn" prefWidth="114.0" text="상품명" />
-                                        <!-- 입고 날짜 컬럼 -->
-                                        <TableColumn fx:id="incomingDateColumn" minWidth="5.0" prefWidth="107.0" text="발주 수량" />
-                                        <TableColumn prefWidth="83.0" text="단가" />
-                                        <TableColumn prefWidth="93.0" text="발주 상태" />
-                                        <TableColumn prefWidth="195.0" text="발주 날짜" />
+                                        <TableColumn fx:id="productNameColumn" prefWidth="114.0" text="상품명" />
+                                        <!-- 발주 수량 컬럼 -->
+                                        <TableColumn fx:id="ordersAmountColumn" minWidth="5.0" prefWidth="107.0" text="발주 수량" />
+                                        <!-- 단가 컬럼 -->
+                                        <TableColumn fx:id="priceColumn" prefWidth="83.0" text="단가" />
+                                        <!-- 발주 상태 컬럼 -->
+                                        <TableColumn fx:id="ordersStatusColumn" prefWidth="93.0" text="발주 상태" />
+                                        <!-- 발주 날짜 컬럼 -->
+                                        <TableColumn fx:id="ordersDateColumn" prefWidth="195.0" text="발주 날짜" />
                                     </columns>
                                 </TableView>
                                 <Pagination prefHeight="7.0" prefWidth="824.0" />
