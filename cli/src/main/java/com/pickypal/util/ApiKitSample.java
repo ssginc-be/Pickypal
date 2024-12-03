@@ -24,7 +24,8 @@ public class ApiKitSample {
          */
         // API 호출
         int pageIdx = 0;
-        ApiResponse response = apiKit.getRequestWithAuth("http://localhost:8080/head/stock/" + pageIdx);
+        String ACCESS_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb290Iiwicm9sZSI6IkhFQUQiLCJleHAiOjE3MzU3NDQ0NjN9.4Y6yReg_4HO_66rz5e-7XGrQEux80gxf0RQu9ONG598";
+        ApiResponse response = apiKit.getRequestWithAuth("http://localhost:8080/head/stock/" + pageIdx, ACCESS_TOKEN);
 
         int statusCode = response.getStatusCode();
         System.out.println("* * * ApiKitSample - status code: " + response.getStatusCode());
