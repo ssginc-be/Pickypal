@@ -1,7 +1,9 @@
 package com.pickypal.api.outgoing;
 
+import com.pickypal.api.item.Item;
 import com.pickypal.api.order.Orders;
 import com.pickypal.api.order.OrdersRepository;
+import com.pickypal.api.order.OrdersViewResponseDto;
 import com.pickypal.api.stock.HeadStock;
 import com.pickypal.api.stock.HeadStockRepository;
 import com.pickypal.api.user.ServiceUser;
@@ -9,9 +11,16 @@ import com.pickypal.api.user.ServiceUserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -64,4 +73,31 @@ public class HeadOutgoingItemService {
             hsRepo.save(hs);
         }
     }
+
+    // 본사의 출고 내역 조회 api: page size 20
+    public ResponseEntity<?> getByPage(String uid, Integer pageIdx) {
+        // Pageable 설정
+        Pageable pageable = PageRequest.of(pageIdx, 20, Sort.by(Sort.Direction.ASC, "id"));
+
+        // 테이블 조회
+        Page<HeadOutgoingItem> pageData = hoRepo.findPageBy(pageable);
+
+        // client에서 파싱 용이하도록 필요한 정보만 선별하여 dto로 변환
+        List<HeadOutgoingItemResponseDto> dtoList = new ArrayList<>();
+        List<HeadOutgoingItem> entityList = pageData.getContent();
+
+        for (HeadOutgoingItem entity : entityList) {
+            dtoList.add(HeadOutgoingItemResponseDto.of(entity));
+        }
+
+        // logging
+        log.info("* * * HeadOutgoingItemService: head outgoing item read info");
+        log.info("request from: {}", "HEAD");
+        log.info("page: {}", pageable.getPageNumber());
+
+        return ResponseEntity
+                .status(HttpStatus.OK.value())
+                .body(dtoList);
+    }
+
 }
