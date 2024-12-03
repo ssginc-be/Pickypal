@@ -1,4 +1,4 @@
-package com.pickypal.api.auth;
+package com.pickypal.dto.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,8 +11,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginResponseDto {
+public class SignUpRequestDto {
+    private String userId; // PK
     private String userName;
-    private String accessToken; // JWT
+    private String email;
+    private String password;
     private String role;
+    private String branchId; // nullable
 }

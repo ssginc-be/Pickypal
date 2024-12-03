@@ -1,4 +1,4 @@
-package com.pickypal.api.auth;
+package com.pickypal.dto.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

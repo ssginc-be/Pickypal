@@ -69,7 +69,7 @@ public class AuthService {
 
         return ResponseEntity
                 .status(HttpStatus.OK.value())
-                .body(new LoginResponseDto(user.getName(), accessToken));
+                .body(new LoginResponseDto(user.getName(), accessToken, user.getRole()));
     }
 
     // 회원가입 api

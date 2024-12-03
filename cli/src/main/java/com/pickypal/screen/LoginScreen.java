@@ -1,5 +1,12 @@
 package com.pickypal.screen;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pickypal.dto.auth.LoginRequestDto;
+import com.pickypal.dto.auth.LoginResponseDto;
+import com.pickypal.util.ApiKit;
+import com.pickypal.util.ApiResponse;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -9,8 +16,8 @@ import java.util.Scanner;
 
 public class LoginScreen {
 
-    public void start() throws IOException {
-        Runtime.getRuntime().exec("cls"); // for Windows
+    public static LoginResponseDto start() throws IOException {
+        //Runtime.getRuntime().exec("cls"); // for Windows
 
         System.out.println("[ 로그인 화면 ]");
         Scanner sc = new Scanner(System.in);
@@ -20,5 +27,18 @@ public class LoginScreen {
 
         System.out.print("* 비밀번호: ");
         String pw = sc.nextLine();
+
+        return login(uid, pw);
+    }
+
+    public static LoginResponseDto login(String uid, String pw) throws JsonProcessingException {
+        ApiKit apiKit = new ApiKit();
+        LoginRequestDto reqDto = new LoginRequestDto(uid, pw);
+        ApiResponse response = apiKit.postRequest("http://localhost:8080/auth/login", reqDto);
+
+        ObjectMapper mapper = new ObjectMapper();
+        LoginResponseDto resDto = mapper.readValue(response.getJsonStr(), LoginResponseDto.class);
+
+        return resDto;
     }
 }

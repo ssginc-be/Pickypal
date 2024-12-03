@@ -56,14 +56,13 @@ public class ApiKit {
 
     // Http GET request **with auth header** to backend server
     // 모든 조회 용도: access token 필요
-    public ApiResponse getRequestWithAuth(String endpoint) {
-        String ACCESS_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb290Iiwicm9sZSI6IkhFQUQiLCJleHAiOjE3MzU3NDQ0NjN9.4Y6yReg_4HO_66rz5e-7XGrQEux80gxf0RQu9ONG598";
+    public ApiResponse getRequestWithAuth(String endpoint, String ACCESS_TOKEN) {
         ApiResponse res = new ApiResponse();
 
         try {
             CloseableHttpClient client = HttpClients.createDefault();
             HttpGet getRequest = new HttpGet(endpoint); //GET 메소드 URL 생성
-            getRequest.addHeader("Authorization", "Bearer " + ACCESS_TOKEN); //KEY 입력
+            getRequest.addHeader("Authorization", "Bearer " + ACCESS_TOKEN);
 
             CloseableHttpResponse response = client.execute(getRequest);
             int statusCode = response.getStatusLine().getStatusCode();
@@ -116,8 +115,11 @@ public class ApiKit {
             // Response 출력
             String body;
             if (statusCode == 200) {
-                ResponseHandler<String> handler = new BasicResponseHandler();
-                body = handler.handleResponse(response);
+                // response body를 UTF-8로 파싱
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
+                body = bufferedReader.readLine();
+                bufferedReader.close();
+
                 System.out.println("* * * ApiKit(POST): 200 OK");
                 System.out.println(body);
             } else {
