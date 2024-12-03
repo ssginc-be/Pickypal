@@ -11,20 +11,17 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface SupplierRepository extends JpaRepository<Supplier, String> {
-
-    Optional<Supplier> findById(String id);
-
-    //납품업체명으로 조회
-    List<Supplier> findByName(String name);
+    //납품처명으로 조회
+    List<Supplier> findAllByNameContains(String name);
 
     //최종 수정일로 조회
     @Query(value =
-            "SELECT s FROM Supplier s WHERE s.lastModifiedAt >= :date AND s.lastModifiedAt < :next_date")
-    List<Supplier> findByLastModifiedOnDate (@Param("date") LocalDateTime date
-    );
+            "SELECT * FROM Supplier s WHERE s.lastModifiedAt >= :startDate AND s.lastModifiedAt < :endDate;"
+            , nativeQuery=true)
+    List<Supplier> findAllByLastModifiedOnDate(@Param("startDate") LocalDateTime startDate,
+                                               @Param("endDate") LocalDateTime endDate);
 
     // 거래 상태로 조회
-    List<Supplier> findByStatus(String status);
-
+    List<Supplier> findAllByStatus(String status);
 }
 
