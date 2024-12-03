@@ -1,4 +1,4 @@
-package com.pickypal.dto;
+package com.pickypal.dto.stock;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
