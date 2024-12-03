@@ -74,4 +74,13 @@ public class OrdersController {
         service.delete(uid, orderId);
     }
 
+    // 본사: '출고대기' 상태의 발주 조회
+    @GetMapping("/head/{pageIdx}")
+    public ResponseEntity<?> getWaitingOrders(
+            @RequestHeader("Authorization") String tokenHeader,
+            @PathVariable("pageIdx") Integer pageIdx) {
+        String uid = jwtKit.validate(tokenHeader);
+        return service.getWaitingOrders(uid, pageIdx);
+    }
+
 }
