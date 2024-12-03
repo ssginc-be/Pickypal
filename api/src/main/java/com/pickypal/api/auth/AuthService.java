@@ -68,7 +68,7 @@ public class AuthService {
         String accessToken = jwtKit.generateAccessToken(user.getId(), user.getRole());
 
         return ResponseEntity
-                .status(HttpStatus.ACCEPTED.value())
+                .status(HttpStatus.OK.value())
                 .body(new LoginResponseDto(user.getName(), accessToken));
     }
 
