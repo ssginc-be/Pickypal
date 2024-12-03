@@ -34,5 +34,10 @@ public class BackdoorController {
         service.shipItem();
     }
 
-    // 지점의 상품을 판매 처리하는 가상 api
+    // 납품업체 테이블에 정보가 없는 상품 row 모두 제거
+    // DeleteMapping이 맞는데 테스트용이라서 Get으로 구현함
+    @GetMapping("cleanse")
+    public void cleanseStockData() {
+        service.cleanseStockData();
+    }
 }

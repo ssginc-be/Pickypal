@@ -3,6 +3,7 @@ package com.pickypal.api.stock;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -47,4 +48,12 @@ public interface HeadStockRepository extends JpaRepository<HeadStock, String> {
             "LIMIT :sdx, :size;", nativeQuery=true)
     List<HeadStock> findAllByType(@Param("type") String type, @Param("sdx") Integer startIdx, @Param("size") Integer size);
 
+    // 납품업체가 null인 행 제거
+    @Modifying
+    @Query(value=
+            "DELETE head_stock " +
+            "FROM head_stock " +
+            "JOIN item USING(item_id) " +
+            "WHERE supplier_id IS NULL;", nativeQuery=true)
+    void cleanseNullSupplier();
 }
