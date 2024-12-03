@@ -1,3 +1,4 @@
+/* NAV 공통 css */
 .button
 {
     -fx-background-color: #6F5CC2;
@@ -5,7 +6,7 @@
 }
 .button:hover
 {
-    -fx-background-color: #A89DDA;
+    -fx-background-color: #5644b3;
 }
 .button:pressed
 {
@@ -13,3 +14,9 @@
     -fx-border-color: #CDD1D6;
     -fx-border-width: 0px 0px 0px 3px;
 }
+Text {
+    -fx-font-family: "SUIT Medium";
+    -fx-font-size: 12px;
+    -fx-fill: #333333;
+}
+

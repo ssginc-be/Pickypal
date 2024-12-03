@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<!-- (본사) 화면 기본 틀 -->
+<AnchorPane xmlns="http://javafx.com/javafx/21.0.5" xmlns:fx="http://javafx.com/fxml/1" fx:controller="head.HeadMainLayoutController">
+    <children>
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0"  >
+            <children>
+                <BorderPane prefHeight="768.0" prefWidth="1024.0">
+                    <!-- 공통 nav -->
+                    <left>
+                        <fx:include source="../common/HeadNav.fxml"  fx:id="headNav"/>
+                    </left>
+                    <!-- 공통 header -->
+                    <top>
+                        <fx:include source="../common/Header.fxml" />
+                    </top>
+                    <center>
+                        <!-- 화면 전환 -->
+                        <VBox fx:id="changePane" prefHeight="700.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+
+                        </VBox>
+                    </center>
+                </BorderPane>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

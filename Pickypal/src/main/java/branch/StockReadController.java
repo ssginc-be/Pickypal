@@ -166,7 +166,7 @@ public class StockReadController {
     public void readStockButtonClick() {
         try {
             // 다른 FXML 파일 로드
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/readStock.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/branch/BranchStock.fxml"));
             VBox newContent = loader.load();
 
             // 기존 VBox 내용을 새로운 화면으로 교체
@@ -180,7 +180,7 @@ public class StockReadController {
     public void incomingRegistButtonClick() {
         try {
             // 다른 FXML 파일 로드
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/incomingRegist.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/head/HeadIncomingManage.fxml"));
             VBox newContent = loader.load();
 
             // 기존 VBox 내용을 새로운 화면으로 교체
@@ -194,7 +194,7 @@ public class StockReadController {
     public void outgoingRegistButtonClick() {
         try {
             // 다른 FXML 파일 로드
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/outgoingRegist.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/head/OutgoingRegist.fxml"));
             VBox newContent = loader.load();
 
             // 기존 VBox 내용을 새로운 화면으로 교체
@@ -208,7 +208,7 @@ public class StockReadController {
     public void branchManageButtonClick() {
         try {
             // 다른 FXML 파일 로드
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/branchManage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/head/BranchManage.fxml"));
             VBox newContent = loader.load();
 
             // 기존 VBox 내용을 새로운 화면으로 교체
@@ -222,7 +222,7 @@ public class StockReadController {
     public void supplierManageButtonClick() {
         try {
             // 다른 FXML 파일 로드
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/supplierManage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SupplierManage.fxml"));
             VBox newContent = loader.load();
 
             // 기존 VBox 내용을 새로운 화면으로 교체
