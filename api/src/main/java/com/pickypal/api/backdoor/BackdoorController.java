@@ -28,10 +28,16 @@ public class BackdoorController {
         service.setBranchStockBetween0And20(branchId);
     }
 
-    // 출고 승인된 상품을 배송하는 가상 api
-    @GetMapping("/out")
-    public void shipItem() {
-        service.shipItem();
+    /* 출고 승인된 상품을 배송하는 가상 api */
+    // 1. 발주 id에 해당하는 발주의 status를 '입고완료'로 변경
+    // 2. 발주 id에 해당하는 발주의 inEndTime을 now()로 변경
+    // 3. 발주 id에 해당하는 본사 출고내역의 status를 '출고완료'로 변경
+    // 4. 발주 id에 해당하는 본사 출고내역의 outEndTime을 now()로 변경
+    // 5. 발주 id에 해당하는 지점의 입고내역 등록
+    // 6. 발주 id에 해당하는 지점의 해당 상품 재고를 추가
+    @GetMapping("/ship")
+    public void shipItem(@RequestParam("order_id") Long oid) {
+        service.shipItem(oid);
     }
 
     // 납품업체 테이블에 정보가 없는 상품 row 모두 제거
