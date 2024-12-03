@@ -11,6 +11,7 @@ import java.util.List;
 
 public interface OrdersRepository extends JpaRepository<Orders, Long> {
 
+    /* 지점의 발주 내역 조회 */
     // 특정 지점id에 해당하는 page 단위 발주 내역 조회
     // ex) 1 page = 1~20 row / 2 page = 21~30 row ...
     Page<Orders> findPageByBranchId(Pageable pageable, String branchId);
@@ -44,4 +45,10 @@ public interface OrdersRepository extends JpaRepository<Orders, Long> {
             "DELETE FROM orders " +
             "WHERE order_id = :order_id AND branch_id = :branch_id;", nativeQuery=true)
     void deleteByIdAndBranchId(@Param("order_id") Long orderId, @Param("branch_id") String branchId);
+
+
+    /* 본사의 발주 내역 조회 */
+    // 발주 상태가 '출고 대기'인 것만 필터링
+    Page<Orders> findPageByStatus(Pageable pageable, String status);
+
 }
