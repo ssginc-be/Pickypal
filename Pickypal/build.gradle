@@ -24,6 +24,12 @@ dependencies {
     implementation 'org.openjfx:javafx-controls:17'
     implementation 'org.openjfx:javafx-fxml:17'
 
+    // API util
+    implementation 'org.apache.httpcomponents:httpclient:4.3.4'
+
+    // jackson-databind for ObjectMapper
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.2'
+
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
