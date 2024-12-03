@@ -5,60 +5,53 @@
 <?import javafx.scene.text.*?>
 
 <!-- (본사) 지점 정보 관리 -->
-<VBox xmlns="http://javafx.com/javafx/21.0.5" xmlns:fx="http://javafx.com/fxml/1" fx:controller="common.NavController" prefHeight="700.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+<VBox xmlns="http://javafx.com/javafx/21.0.5" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@../../css/style.css">
     <children>
-        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+        <AnchorPane>
             <children>
-                <DatePicker focusTraversable="false" layoutX="80.0" layoutY="63.0"/>
-                <Button layoutX="751.0" layoutY="63.0" mnemonicParsing="false" text="Excel"/>
-                <Button layoutX="689.0" layoutY="63.0" mnemonicParsing="false" text="Delete"/>
-                <Text layoutX="30.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="등록일">
+                <DatePicker focusTraversable="false" layoutX="80.0" layoutY="63.0" />
+                <Button layoutX="724.0" layoutY="63.0" mnemonicParsing="false" text="Excel" />
+                <Button layoutX="639.0" layoutY="63.0" mnemonicParsing="false" text="검색" />
+                <Text layoutX="30.0" layoutY="82.0" text="등록일">
                     <font>
-                        <Font name="SUIT Medium" size="12.0"/>
+                        <Font name="SUIT Medium" size="12.0" />
                     </font>
                 </Text>
-                <TextField layoutX="80.0" layoutY="21.0"/>
-                <Text layoutX="30.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="지점ID">
+                <TextField layoutX="80.0" layoutY="21.0" />
+                <Text layoutX="30.0" layoutY="40.0" text="지점ID">
                     <font>
-                        <Font name="SUIT Medium" size="12.0"/>
+                        <Font name="SUIT Medium" size="12.0" />
                     </font>
                 </Text>
-                <TextField layoutX="349.0" layoutY="21.0"/>
-                <Text layoutX="302.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="지점명">
+                <TextField layoutX="349.0" layoutY="21.0" />
+                <Text layoutX="302.0" layoutY="40.0" text="지점명">
                     <font>
-                        <Font name="SUIT Medium" size="12.0"/>
+                        <Font name="SUIT Medium" size="12.0" />
                     </font>
                 </Text>
-                <TextField layoutX="562.0" layoutY="21.0"/>
-                <Text layoutX="528.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="주소">
+                <TextField layoutX="562.0" layoutY="21.0" />
+                <Text layoutX="528.0" layoutY="40.0" text="주소">
                     <font>
-                        <Font name="SUIT Medium" size="12.0"/>
+                        <Font name="SUIT Medium" size="12.0" />
                     </font>
                 </Text>
-                <DatePicker focusTraversable="false" layoutX="350.0" layoutY="63.0"/>
-                <Text layoutX="303.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="수정일">
+                <DatePicker focusTraversable="false" layoutX="350.0" layoutY="63.0" />
+                <Text layoutX="303.0" layoutY="79.0" text="수정일">
                     <font>
-                        <Font name="SUIT Medium" size="12.0"/>
+                        <Font name="SUIT Medium" size="12.0" />
                     </font>
                 </Text>
             </children>
         </AnchorPane>
-        <TableView fx:id="orderTable" prefHeight="700.0" prefWidth="806.0">
+        <TableView fx:id="orderTable">
             <columns>
-                <!-- 선택 (체크박스) 컬럼 -->
-                <TableColumn fx:id="selectColumn" text="선택" />
-                <!-- 지점 ID 컬럼 -->
-                <TableColumn fx:id="branchIdColumn" prefWidth="200" text="지점 ID" />
-                <!-- 지점명 컬럼 -->
-                <TableColumn fx:id="branchNameColumn" prefWidth="200" text="지점명" />
-                <!-- 주소 컬럼 -->
-                <TableColumn fx:id="addressColumn" prefWidth="200" text="주소" />
-                <!-- 등록일 컬럼 -->
-                <TableColumn fx:id="createAtColumn" text="등록일" />
-                <!-- 수정일 컬럼 -->
-                <TableColumn fx:id="updatedAtColumn" text="수정일" />
+                <TableColumn fx:id="branchIdColumn" text="지점 ID" />
+                <TableColumn fx:id="branchNameColumn" text="지점명" />
+                <TableColumn fx:id="addressColumn" text="주소" />
+                <TableColumn fx:id="phoneNumberColumn" text="전화번호" />
+                <TableColumn fx:id="lastModifiedColumn" text="등록일" />
             </columns>
         </TableView>
+        <Pagination />
     </children>
 </VBox>
-

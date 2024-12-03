@@ -5,75 +5,50 @@
 <?import javafx.scene.text.*?>
 
 <!-- (본사) 재고 조회 -->
- <AnchorPane xmlns="http://javafx.com/javafx/21.0.5" xmlns:fx="http://javafx.com/fxml/1" fx:controller="common.NavController" >
+<VBox xmlns="http://javafx.com/javafx/21.0.5" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@../../css/style.css">
     <children>
-        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+        <AnchorPane>
             <children>
-                <BorderPane prefHeight="768.0" prefWidth="1024.0">
-                    <!-- 공통 nav -->
-                    <left>
-                        <fx:include source="../common/HeadNav.fxml" />
-                    </left>
-                    <!-- 공통 header -->
-                    <top>
-                        <fx:include source="../common/Header.fxml" />
-                    </top>
-                    <center>
-                        <VBox fx:id="changePane" prefHeight="700.0" prefWidth="800.0" BorderPane.alignment="CENTER">
-                            <children>
-                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                    <children>
-                                        <Button layoutX="751.0" layoutY="63.0" mnemonicParsing="false" text="Excel" />
-                                        <Button layoutX="667.0" layoutY="63.0" mnemonicParsing="false" text="검색" />
-                                        <TextField layoutX="80.0" layoutY="21.0" />
-                                        <Text layoutX="30.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="상품 ID">
-                                            <font>
-                                                <Font name="SUIT Medium" size="12.0" />
-                                            </font>
-                                        </Text>
-                                        <TextField layoutX="319.0" layoutY="21.0" />
-                                        <Text layoutX="272.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="상품명">
-                                            <font>
-                                                <Font name="SUIT Medium" size="12.0" />
-                                            </font>
-                                        </Text>
-                                        <DatePicker focusTraversable="false" layoutX="575.0" layoutY="20.0" />
-                                        <Text layoutX="510.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="입고 날짜">
-                                            <font>
-                                                <Font name="SUIT Medium" size="12.0" />
-                                            </font>
-                                        </Text>
-                                        <Text layoutX="30.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="필터링">
-                                            <font>
-                                                <Font name="SUIT Medium" size="12.0" />
-                                            </font>
-                                        </Text>
-                                        <ComboBox fx:id="productCategoryComboBox" layoutX="80.0" layoutY="63.0" prefHeight="29.0" prefWidth="124.0" promptText="카테고리" />
-                                    </children>
-                                </AnchorPane>
-                                <TableView fx:id="branchIncomingTable" prefHeight="652.0" prefWidth="824.0">
-                                    <columns>
-                                        <!-- 선택 (체크박스) 컬럼 -->
-                                        <TableColumn fx:id="selectColumn" prefWidth="47.0" text="선택" />
-                                        <!-- 상품 ID 컬럼 -->
-                                        <TableColumn fx:id="productIdColumn" prefWidth="76.0" text="상품 ID" />
-                                        <!-- 상품명 컬럼 -->
-                                        <TableColumn fx:id="productNameColumn" prefWidth="108.0" text="상품 유형" />
-                                        <!-- 입고 수량 컬럼 -->
-                                        <TableColumn fx:id="incomingQuantityColumn" prefWidth="114.0" text="납품처" />
-                                        <!-- 입고 날짜 컬럼 -->
-                                        <TableColumn fx:id="incomingDateColumn" minWidth="5.0" prefWidth="107.0" text="상품명" />
-                                        <TableColumn prefWidth="83.0" text="가격" />
-                                        <TableColumn prefWidth="93.0" text="재고 수량" />
-                                        <TableColumn prefWidth="195.0" text="입고 날짜" />
-                                    </columns>
-                                </TableView>
-                        <Pagination prefHeight="7.0" prefWidth="824.0" />
-                            </children>
-                        </VBox>
-                    </center>
-                </BorderPane>
+                <Button layoutX="751.0" layoutY="63.0" mnemonicParsing="false" text="Excel" />
+                <Button layoutX="667.0" layoutY="63.0" mnemonicParsing="false" text="검색" />
+                <TextField layoutX="80.0" layoutY="21.0" />
+                <Text layoutX="30.0" layoutY="40.0" text="상품 ID">
+                    <font>
+                        <Font name="SUIT Medium" size="12.0" />
+                    </font>
+                </Text>
+                <TextField layoutX="319.0" layoutY="21.0" />
+                <Text layoutX="272.0" layoutY="40.0" text="상품명">
+                    <font>
+                        <Font name="SUIT Medium" size="12.0" />
+                    </font>
+                </Text>
+                <DatePicker layoutX="575.0" layoutY="20.0" />
+                <Text layoutX="510.0" layoutY="40.0" text="입고 날짜">
+                    <font>
+                        <Font name="SUIT Medium" size="12.0" />
+                    </font>
+                </Text>
+                <Text layoutX="30.0" layoutY="82.0" text="필터링">
+                    <font>
+                        <Font name="SUIT Medium" size="12.0" />
+                    </font>
+                </Text>
+                <ComboBox layoutX="80.0" layoutY="63.0" promptText="카테고리" />
             </children>
         </AnchorPane>
+        <TableView fx:id="branchIncomingTable">
+            <columns>
+                <TableColumn fx:id="productIdColumn" text="상품 ID" />
+                <TableColumn fx:id="incomingDateColumn" text="상품명" />
+                <TableColumn fx:id="productNameColumn" text="상품 유형" />
+                <TableColumn fx:id="productTagColumn" text="태그" />
+                <TableColumn fx:id="incomingQuantityColumn" text="납품처" />
+                <TableColumn text="가격" />
+                <TableColumn text="재고 수량" />
+                <TableColumn text="입고 날짜" />
+            </columns>
+        </TableView>
+        <Pagination />
     </children>
-</AnchorPane>
+</VBox>
