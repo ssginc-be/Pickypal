@@ -2,6 +2,7 @@ package com.pickypal.api.outgoing;
 
 import com.pickypal.api.auth.JwtKit;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -25,6 +26,14 @@ public class HeadOutgoingItemController {
             @RequestParam("status") String status) {
         String uid = jwtKit.validate(tokenHeader);
         service.setStatus(uid, oid, status);
+    }
+
+    // 본사의 출고 내역 조회 api: page size 20
+    @GetMapping("/{pageIdx}")
+    public ResponseEntity<?> getByPage(
+            @RequestHeader("Authorization") String tokenHeader, @PathVariable("pageIdx") Integer pageIdx) {
+        String uid = jwtKit.validate(tokenHeader);
+        return service.getByPage(uid, pageIdx);
     }
 
 }
