@@ -4,11 +4,10 @@
 <?import javafx.scene.layout.*?>
 
 <!-- Branch Nav -->
-<VBox prefHeight="700.0" prefWidth="200.0" style="-fx-background-color: #6F5CC2;" stylesheets="@../../css/common.css" >
+<VBox xmlns="http://javafx.com/javafx/21.0.5" xmlns:fx="http://javafx.com/fxml/1" fx:controller="common.BranchNavController" prefHeight="700.0" prefWidth="200.0" style="-fx-background-color: #6F5CC2;" stylesheets="@../../css/common.css">
     <children>
-        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="재고 조회" textFill="WHITE" />
-        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="입고 관리" textFill="WHITE" />
-        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="출고 관리" textFill="WHITE" />
-        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="발주 관리" textFill="WHITE" />
+        <Button onAction="#moveToBranchStock" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="재고 조회" textFill="WHITE" />
+        <Button onAction="#moveToBranchIncomingMange" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="입고 관리" textFill="WHITE" />
+        <Button onAction="#moveToBranchOrdersManage" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="발주 관리" textFill="WHITE" />
     </children>
 </VBox>

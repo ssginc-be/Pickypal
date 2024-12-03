@@ -1,0 +1,86 @@
+/* 기본 VBox 스타일 */
+VBox {
+    -fx-background-color: #f9f9f9;
+}
+
+/* AnchorPane 안의 버튼 스타일 */
+Button {
+    -fx-background-color: #6F5CC2;
+    -fx-text-fill: white;
+    -fx-font-family: "SUIT Medium";
+    -fx-font-size: 14px;
+    -fx-padding: 5 15;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+Button:hover {
+    -fx-background-color: #5644b3;
+}
+
+/* 텍스트 필드 스타일 */
+TextField {
+    -fx-padding: 5;
+    -fx-border-color: #dcdcdc;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-font-family: "SUIT Regular";
+    -fx-font-size: 12px;
+}
+
+/* 콤보 박스 스타일 */
+ComboBox {
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 3;
+    -fx-font-family: "SUIT Regular";
+    -fx-font-size: 12px;
+}
+
+/* 날짜 선택기 스타일 */
+DatePicker {
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-font-family: "SUIT Regular";
+    -fx-font-size: 12px;
+}
+
+/* 텍스트 스타일 */
+Text {
+    -fx-font-family: "SUIT Medium";
+    -fx-font-size: 12px;
+    -fx-fill: #333333;
+}
+
+/* 테이블 뷰 스타일 */
+TableView {
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-font-family: "SUIT Regular";
+    -fx-font-size: 12px;
+    -fx-alternate-row-fill-visible: true;
+    -fx-selection-bar: #4CAF50;
+}
+
+TableView .column-header-background {
+    -fx-background-color: #f1f1f1;
+}
+
+TableColumn {
+    -fx-alignment: CENTER;
+    -fx-font-family: "SUIT Medium";
+    -fx-font-size: 12px;
+}
+
+/* 페이징 컨트롤 스타일 */
+Pagination {
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-font-family: "SUIT Regular";
+    -fx-font-size: 12px;
+}
