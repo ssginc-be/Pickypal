@@ -14,12 +14,17 @@ import org.apache.http.impl.client.HttpClients;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.net.URLEncoder;
 
 /**
  * @author Queue-ri
  */
 
 public class ApiKit {
+    private boolean debug;
+
+    public ApiKit() { debug = false; }
+    public ApiKit(boolean debug) { this.debug = debug; }
 
     // Http GET request to backend server
     // **no auth header**
@@ -39,10 +44,10 @@ public class ApiKit {
             if (statusCode == 200) {
                 ResponseHandler<String> handler = new BasicResponseHandler();
                 body = handler.handleResponse(response);
-                System.out.println("* * * ApiKit(GET): 200 OK");
-                System.out.println(body);
+                if (debug) System.out.println("* * * ApiKit(GET): 200 OK");
+                if (debug) System.out.println(body);
             } else {
-                System.out.println("* * * ApiKit(GET): Server returned " + statusCode);
+                if (debug) System.out.println("* * * ApiKit(GET): Server returned " + statusCode);
                 body = null;
             }
             res.setJsonStr(body);
@@ -76,12 +81,12 @@ public class ApiKit {
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
                 body = bufferedReader.readLine();
                 bufferedReader.close();
-                
-                System.out.println("* * * ApiKit(auth GET): 200 OK");
-                System.out.println(body);
+
+                if (debug) System.out.println("* * * ApiKit(auth GET): 200 OK");
+                if (debug) System.out.println(body);
 
             } else {
-                System.out.println("* * * ApiKit(auth GET): Server returned " + statusCode);
+                if (debug) System.out.println("* * * ApiKit(auth GET): Server returned " + statusCode);
                 body = null;
             }
             res.setJsonStr(body);
@@ -121,10 +126,10 @@ public class ApiKit {
                 body = bufferedReader.readLine();
                 bufferedReader.close();
 
-                System.out.println("* * * ApiKit(POST): 200 OK");
-                System.out.println(body);
+                if (debug) System.out.println("* * * ApiKit(POST): 200 OK");
+                if (debug) System.out.println(body);
             } else {
-                System.out.println("* * * ApiKit(POST): Server returned " + statusCode);
+                if (debug) System.out.println("* * * ApiKit(POST): Server returned " + statusCode);
                 body = null;
             }
             res.setJsonStr(body);
@@ -162,10 +167,10 @@ public class ApiKit {
             if (statusCode == 200) {
                 ResponseHandler<String> handler = new BasicResponseHandler();
                 body = handler.handleResponse(response);
-                System.out.println("* * * ApiKit(auth POST): 200 OK");
-                System.out.println(body);
+                if (debug) System.out.println("* * * ApiKit(auth POST): 200 OK");
+                if (debug) System.out.println(body);
             } else {
-                System.out.println("* * * ApiKit(auth POST): Server returned " + statusCode);
+                if (debug) System.out.println("* * * ApiKit(auth POST): Server returned " + statusCode);
                 body = null;
             }
             res.setJsonStr(body);
@@ -200,11 +205,11 @@ public class ApiKit {
                 body = bufferedReader.readLine();
                 bufferedReader.close();
 
-                System.out.println("* * * ApiKit(auth DELETE): 200 OK");
-                System.out.println(body);
+                if (debug) System.out.println("* * * ApiKit(auth DELETE): 200 OK");
+                if (debug) System.out.println(body);
 
             } else {
-                System.out.println("* * * ApiKit(auth DELETE): Server returned " + statusCode);
+                if (debug) System.out.println("* * * ApiKit(auth DELETE): Server returned " + statusCode);
                 body = null;
             }
             res.setJsonStr(body);

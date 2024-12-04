@@ -1,4 +1,4 @@
-package com.pickypal.api.stock;
+package com.pickypal.dto.stock;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BranchStockSingleViewResponseDto {
+public class BranchStockViewResponseDto {
     private String stockId; // UI에 보이지 않지만 내부적으로 사용할 수 있음
     private String itemId;
     private String itemName;

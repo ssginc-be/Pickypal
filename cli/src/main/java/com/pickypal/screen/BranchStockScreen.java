@@ -5,8 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.pickypal.dto.auth.LoginResponseDto;
-import com.pickypal.dto.auth.SignUpRequestDto;
-import com.pickypal.dto.stock.HeadStockViewResponseDto;
+import com.pickypal.dto.stock.BranchStockViewResponseDto;
 import com.pickypal.util.ApiKit;
 import com.pickypal.util.ApiResponse;
 import com.pickypal.util.Console;
@@ -24,7 +23,7 @@ import java.util.Scanner;
  * @author Queue-ri
  */
 
-public class HeadStockScreen {
+public class BranchStockScreen {
 
     public static void start(LoginResponseDto loginInfo) throws IOException {
         //Runtime.getRuntime().exec("cls"); // for Windows
@@ -37,7 +36,7 @@ public class HeadStockScreen {
 
         while(true) {
             Console.clear();
-            System.out.println("[ [본사] 재고 조회 화면 ]");
+            System.out.println("[ [지점] 재고 조회 화면 ]");
             if (loginInfo != null) System.out.println("* 로그인 정보: " + loginInfo.getUserName() + " / " + loginInfo.getRole());
 //            System.out.println("---------------------------------------------------------");
 //            System.out.printf("%10s%10s", "상품ID", "상품명\n");
@@ -96,11 +95,11 @@ public class HeadStockScreen {
         String encodedValue = URLEncoder.encode(value, "UTF-8");
 
         switch (option) {
-            case 0: endpoint = "http://localhost:8080/head/stock/" + pageIdx; break;
-            case 1: endpoint = "http://localhost:8080/head/stock/item-id?item_id=" + encodedValue; break;
-            case 2: endpoint = "http://localhost:8080/head/stock/item-name/" + pageIdx + "?item_name=" + encodedValue; break;
-            case 3: endpoint = "http://localhost:8080/head/stock/type/" + pageIdx + "?type=" + encodedValue; break;
-            case 4: endpoint = "http://localhost:8080/head/stock/date/" + pageIdx + "?date=" + encodedValue; break;
+            case 0: endpoint = "http://localhost:8080/branch/stock/" + pageIdx; break;
+            case 1: endpoint = "http://localhost:8080/branch/stock/item-id?item_id=" + encodedValue; break;
+            case 2: endpoint = "http://localhost:8080/branch/stock/item-name/" + pageIdx + "?item_name=" + encodedValue; break;
+            case 3: endpoint = "http://localhost:8080/branch/stock/type/" + pageIdx + "?type=" + encodedValue; break;
+            case 4: endpoint = "http://localhost:8080/branch/stock/date/" + pageIdx + "?date=" + encodedValue; break;
         }
 
         ApiResponse response = apiKit.getRequestWithAuth(endpoint, accessToken);
@@ -110,7 +109,7 @@ public class HeadStockScreen {
             ObjectMapper mapper = new ObjectMapper();
             mapper.registerModule(new JavaTimeModule()); // LocalDateTime 파싱을 위해 필요
             String jsonStr = response.getJsonStr();
-            List<HeadStockViewResponseDto> dtoList = mapper.readValue(jsonStr, TypeFactory.defaultInstance().constructCollectionType(List.class, HeadStockViewResponseDto.class));
+            List<BranchStockViewResponseDto> dtoList = mapper.readValue(jsonStr, TypeFactory.defaultInstance().constructCollectionType(List.class, BranchStockViewResponseDto.class));
 
             String[] columnNames = {"재고ID", "상품ID", "상품명", "상품 유형", "상품 태그", "납품처명", "가격", "재고", "최근 입고일"};
             Object[][] data = dtoList.stream()

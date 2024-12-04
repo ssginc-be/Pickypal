@@ -6,6 +6,7 @@ import com.pickypal.dto.auth.LoginRequestDto;
 import com.pickypal.dto.auth.LoginResponseDto;
 import com.pickypal.util.ApiKit;
 import com.pickypal.util.ApiResponse;
+import com.pickypal.util.Console;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -18,6 +19,7 @@ public class LoginScreen {
 
     public static LoginResponseDto start() throws IOException {
         //Runtime.getRuntime().exec("cls"); // for Windows
+        Console.clear();
 
         System.out.println("[ 로그인 화면 ]");
         Scanner sc = new Scanner(System.in);

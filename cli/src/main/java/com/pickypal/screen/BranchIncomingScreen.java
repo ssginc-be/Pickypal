@@ -9,6 +9,7 @@ import com.pickypal.dto.incoming.BranchIncomingItemResponseDto;
 import com.pickypal.dto.stock.HeadStockViewResponseDto;
 import com.pickypal.util.ApiKit;
 import com.pickypal.util.ApiResponse;
+import com.pickypal.util.Console;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -32,15 +33,16 @@ public class BranchIncomingScreen {
         String value = "";
 
         while(true) {
+            Console.clear();
             System.out.println("[ [지점] 입고 조회 화면 ]");
             if (loginInfo != null) System.out.println("* 로그인 정보: " + loginInfo.getUserName() + " / " + loginInfo.getRole());
-            System.out.println("---------------------------------------------------------");
+            System.out.println("|---------------------------------------------------------");
             System.out.printf("|%9s|%15s|%22s|", "입고ID", "상품ID", "상품명\n");
-            System.out.println("---------------------------------------------------------");
+            System.out.println("|---------------------------------------------------------");
 
             getByPage(pageIdx, currentOption, value, loginInfo.getAccessToken());
 
-            System.out.println("---------------------------------------------------------");
+            System.out.println("|---------------------------------------------------------");
 
             System.out.println();
             System.out.println("0) 전체 조회");
@@ -50,7 +52,7 @@ public class BranchIncomingScreen {
             System.out.println("4) [← 뒤로 가기]");
 
             System.out.println();
-            if (typedInvalidMenu) System.out.print("* * * 잘못 입력했습니다. 옵션 번호를 선택해주세요: ");
+            if (typedInvalidMenu) System.out.println("* * * 잘못 입력했습니다. 옵션 번호를 선택해주세요: ");
             else System.out.print("* * * 옵션 번호를 선택해주세요: ");
             currentOption = sc.nextInt();
 
@@ -100,7 +102,7 @@ public class BranchIncomingScreen {
             String jsonStr = response.getJsonStr();
             List<BranchIncomingItemResponseDto> dtoList = mapper.readValue(jsonStr, TypeFactory.defaultInstance().constructCollectionType(List.class, BranchIncomingItemResponseDto.class));
             for (BranchIncomingItemResponseDto dto : dtoList) {
-                System.out.printf("%9s%15s%22s%9s%9s%9s%9s", dto.getId(), dto.getItemId(), dto.getItemName(), dto.getSupplierId(), dto.getSupplierName(), dto.getQuantity(), dto.getInTime());
+                System.out.printf("|%9s|%15s|%22s|%9s%9s%9s%9s", dto.getId(), dto.getItemId(), dto.getItemName(), dto.getSupplierId(), dto.getSupplierName(), dto.getQuantity(), dto.getInTime());
                 System.out.println();
             }
         }

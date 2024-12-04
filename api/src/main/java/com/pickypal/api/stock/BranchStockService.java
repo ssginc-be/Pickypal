@@ -1,5 +1,6 @@
 package com.pickypal.api.stock;
 
+import com.pickypal.api.item.Item;
 import com.pickypal.api.user.ServiceUser;
 import com.pickypal.api.user.ServiceUserRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,9 +41,25 @@ public class BranchStockService {
         Page<BranchStock> pageData = bsRepo.findPageByBranchId(pageable, branchId);
 
         // client에서 파싱 용이하도록 필요한 정보만 선별하여 dto로 변환
-        BranchStockPageViewResponseDto dto = new BranchStockPageViewResponseDto(
-                pageData.getContent(), pageData.getNumber()
-        );
+        List<BranchStockPageViewResponseDto> dtoList = new ArrayList<>();
+        List<BranchStock> entityList = pageData.getContent();
+
+        for (BranchStock entity : entityList) {
+            Item item = entity.getItem();
+            BranchStockPageViewResponseDto dto = new BranchStockPageViewResponseDto(
+                    entity.getId(),
+                    item.getId(),
+                    item.getName(),
+                    item.getType(),
+                    item.getTag(),
+                    item.getSupplier().getName(),
+                    item.getPrice(),
+                    entity.getStock(),
+                    entity.getLastModifiedAt(),
+                    pageData.getNumber()
+            );
+            dtoList.add(dto);
+        }
 
         // logging
         log.info("* * * BranchStockService: branch stock read info");
@@ -50,7 +68,7 @@ public class BranchStockService {
 
         return ResponseEntity
                 .status(HttpStatus.OK.value())
-                .body(dto);
+                .body(dtoList);
     }
 
     // 지점 재고 조회: 상품 id로 필터링
@@ -65,9 +83,26 @@ public class BranchStockService {
 
 
         // client에서 파싱 용이하도록 필요한 정보만 선별하여 dto로 변환
-        BranchStockSingleViewResponseDto dto = new BranchStockSingleViewResponseDto(
-                bsList
-        );
+        List<HeadStockSingleViewResponseDto> dtoList = new ArrayList<>();
+        // 검색된 row가 없으면 빈 dtoList, 있으면 그거 하나 들어있는 dtoList로 반환
+        // 검색결과가 무조건 최대 1개이지만 list로 반환하는 이유는, client에서 일관적으로 파싱할 수 있게끔 하기 위함
+        if (!bsList.isEmpty()) {
+            BranchStock entity = bsList.get(0);
+            Item item = entity.getItem();
+            HeadStockSingleViewResponseDto dto = new HeadStockSingleViewResponseDto(
+                    entity.getId(),
+                    item.getId(),
+                    item.getName(),
+                    item.getType(),
+                    item.getTag(),
+                    item.getSupplier().getName(),
+                    item.getPrice(),
+                    entity.getStock(),
+                    entity.getLastModifiedAt(),
+                    0 // pageIdx
+            );
+            dtoList.add(dto);
+        }
 
         // logging
         log.info("* * * BranchStockService: branch stock read info");
@@ -76,7 +111,7 @@ public class BranchStockService {
 
         return ResponseEntity
                 .status(HttpStatus.OK.value())
-                .body(dto);
+                .body(dtoList);
     }
 
     // 지점 재고 조회: 상품명으로 필터링
@@ -96,9 +131,24 @@ public class BranchStockService {
         List<BranchStock> pageData = bsRepo.findAllByBranchIdAndItemName(branchId, itemName, startIdx, PAGE_SIZE);
 
         // client에서 파싱 용이하도록 필요한 정보만 선별하여 dto로 변환
-        BranchStockPageViewResponseDto dto = new BranchStockPageViewResponseDto(
-                pageData, pageIdx
-        );
+        List<BranchStockPageViewResponseDto> dtoList = new ArrayList<>();
+
+        for (BranchStock entity : pageData) {
+            Item item = entity.getItem();
+            BranchStockPageViewResponseDto dto = new BranchStockPageViewResponseDto(
+                    entity.getId(),
+                    item.getId(),
+                    item.getName(),
+                    item.getType(),
+                    item.getTag(),
+                    item.getSupplier().getName(),
+                    item.getPrice(),
+                    entity.getStock(),
+                    entity.getLastModifiedAt(),
+                    pageIdx
+            );
+            dtoList.add(dto);
+        }
 
         // logging
         log.info("* * * BranchStockService: branch stock read info");
@@ -107,7 +157,7 @@ public class BranchStockService {
 
         return ResponseEntity
                 .status(HttpStatus.OK.value())
-                .body(dto);
+                .body(dtoList);
     }
 
     // 지점 재고 조회: 최종 수정일(=최근입고일)로 필터링
@@ -134,9 +184,24 @@ public class BranchStockService {
         List<BranchStock> pageData = bsRepo.findAllByBranchIdAndLastModifiedAt(branchId, date, nextDate, startIdx, PAGE_SIZE);
 
         // client에서 파싱 용이하도록 필요한 정보만 선별하여 dto로 변환
-        BranchStockPageViewResponseDto dto = new BranchStockPageViewResponseDto(
-                pageData, pageIdx
-        );
+        List<BranchStockPageViewResponseDto> dtoList = new ArrayList<>();
+
+        for (BranchStock entity : pageData) {
+            Item item = entity.getItem();
+            BranchStockPageViewResponseDto dto = new BranchStockPageViewResponseDto(
+                    entity.getId(),
+                    item.getId(),
+                    item.getName(),
+                    item.getType(),
+                    item.getTag(),
+                    item.getSupplier().getName(),
+                    item.getPrice(),
+                    entity.getStock(),
+                    entity.getLastModifiedAt(),
+                    pageIdx
+            );
+            dtoList.add(dto);
+        }
 
         // logging
         log.info("* * * BranchStockService: branch stock read info");
@@ -145,7 +210,7 @@ public class BranchStockService {
 
         return ResponseEntity
                 .status(HttpStatus.OK.value())
-                .body(dto);
+                .body(dtoList);
     }
 
     // 지점 재고 조회: 유형(type): 행사상품, PL, FF로 필터링
@@ -165,9 +230,24 @@ public class BranchStockService {
         List<BranchStock> pageData = bsRepo.findAllByBranchIdAndType(branchId, type, startIdx, PAGE_SIZE);
 
         // client에서 파싱 용이하도록 필요한 정보만 선별하여 dto로 변환
-        BranchStockPageViewResponseDto dto = new BranchStockPageViewResponseDto(
-                pageData, pageIdx
-        );
+        List<BranchStockPageViewResponseDto> dtoList = new ArrayList<>();
+
+        for (BranchStock entity : pageData) {
+            Item item = entity.getItem();
+            BranchStockPageViewResponseDto dto = new BranchStockPageViewResponseDto(
+                    entity.getId(),
+                    item.getId(),
+                    item.getName(),
+                    item.getType(),
+                    item.getTag(),
+                    item.getSupplier().getName(),
+                    item.getPrice(),
+                    entity.getStock(),
+                    entity.getLastModifiedAt(),
+                    pageIdx
+            );
+            dtoList.add(dto);
+        }
 
         // logging
         log.info("* * * BranchStockService: branch stock read info");
@@ -177,7 +257,7 @@ public class BranchStockService {
 
         return ResponseEntity
                 .status(HttpStatus.OK.value())
-                .body(dto);
+                .body(dtoList);
     }
 
 }

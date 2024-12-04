@@ -22,11 +22,9 @@ import java.util.Scanner;
 
 public class HeadOutgoingManageScreen {
 
-    private static Scanner sc = new Scanner(System.in);
-
-
     public static void start(LoginResponseDto loginInfo) throws IOException {
         //Runtime.getRuntime().exec("cls"); // for Windows
+        Scanner sc = new Scanner(System.in);
 
         boolean typedInvalidMenu = false;
         int currentOption = 0;

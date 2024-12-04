@@ -9,6 +9,7 @@ import com.pickypal.dto.order.OrdersSaveRequestDto;
 import com.pickypal.dto.order.OrdersViewResponseDto;
 import com.pickypal.util.ApiKit;
 import com.pickypal.util.ApiResponse;
+import com.pickypal.util.Console;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -33,7 +34,8 @@ public class BranchOrderScreen {
         String value = "";
 
         while(true) {
-            System.out.println("[ [본사] 재고 조회 화면 ]");
+            Console.clear();
+            System.out.println("[ [지점] 발주 관리 화면 ]");
             if (loginInfo != null) System.out.println("* 로그인 정보: " + loginInfo.getUserName() + " / " + loginInfo.getRole());
             System.out.println("---------------------------------------------------------");
             System.out.printf("%10s%10s", "상품ID", "상품명\n");
@@ -54,14 +56,14 @@ public class BranchOrderScreen {
 
             if (currentOption == 0) {
                 Loop: while(true) {
-                    System.out.print("* * * 유형 선택: \n0) 전체 조회  \n1) 상품ID 조회  \n2) 상품명 조회 \n3) 발주일 조회 \n4) [← 뒤로 가기] >> ");
+                    System.out.print("* * * 유형 선택: \n0) 전체 조회  \n1) 상품ID 조회  \n2) 상품명 조회 \n3) 발주일 조회 \n4) [← 뒤로 가기] \n>> ");
                     int selected = sc.nextInt();
                     switch (selected) {
                         case 0: overall(); break;
                         case 1: itemId(); break;
                         case 2: itemName(); break;
                         case 3: orderDate(); break;
-                        case 4: break Loop;
+                        case 4: return;
                     }
                 }
             }
