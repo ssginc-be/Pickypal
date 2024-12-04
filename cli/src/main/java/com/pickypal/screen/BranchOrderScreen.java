@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.pickypal.dto.auth.LoginResponseDto;
 import com.pickypal.dto.order.OrdersSaveRequestDto;
 import com.pickypal.dto.order.OrdersViewResponseDto;
 import com.pickypal.util.ApiKit;
@@ -20,11 +21,12 @@ import java.util.Scanner;
  */
 
 public class BranchOrderScreen {
-    static String ACCESS_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJRdWV1ZS1yaSIsInJvbGUiOiJCUkFOQ0giLCJleHAiOjE3MzU2OTI2NDN9.lofPCdw-7xIiqFyGGzTt3pglEV0wqPeIj67RbcCkwnw";
     static Scanner sc = new Scanner(System.in);
-    public static void main(String[] args) throws IOException {
-        //Runtime.getRuntime().exec("cls"); // for Windows
+    static LoginResponseDto loginInfoAccessToken;
 
+    public static void start(LoginResponseDto loginInfo) throws IOException {
+        //Runtime.getRuntime().exec("cls"); // for Windows
+        loginInfoAccessToken = loginInfo;
         boolean typedInvalidMenu = false;
         int currentOption = 0;
         int pageIdx = 0;
@@ -32,12 +34,12 @@ public class BranchOrderScreen {
 
         while(true) {
             System.out.println("[ [본사] 재고 조회 화면 ]");
-//            if (loginInfo != null) System.out.println("* 로그인 정보: " + loginInfo.getUserName() + " / " + loginInfo.getRole());
+            if (loginInfo != null) System.out.println("* 로그인 정보: " + loginInfo.getUserName() + " / " + loginInfo.getRole());
             System.out.println("---------------------------------------------------------");
             System.out.printf("%10s%10s", "상품ID", "상품명\n");
             System.out.println("---------------------------------------------------------");
 
-//            getByPage(pageIdx, currentOption, value, loginInfo.getAccessToken());
+            getByPage(pageIdx, currentOption, value, loginInfo.getAccessToken());
 
             System.out.println("---------------------------------------------------------");
 
@@ -78,7 +80,7 @@ public class BranchOrderScreen {
                 int orderId = sc.nextInt();
 
                 ApiKit apiKit = new ApiKit();
-                ApiResponse response = apiKit.deleteRequestWithAuth("http://localhost:8080/orders/" + orderId, ACCESS_TOKEN);
+                ApiResponse response = apiKit.deleteRequestWithAuth("http://localhost:8080/orders/" + orderId, loginInfo.getAccessToken());
                 System.out.println("발주번호:" + orderId +" 삭제 되었습니다.");
             }
         }
@@ -87,33 +89,33 @@ public class BranchOrderScreen {
     public static void overall() throws UnsupportedEncodingException, JsonProcessingException {
         System.out.print("* * * 조회할 페이지 번호 >> ");
         int pageIdx = sc.nextInt();
-        getByPage(pageIdx, 0,"", ACCESS_TOKEN);
+        getByPage(pageIdx, 0,"", loginInfoAccessToken.getAccessToken());
     }
 
     public static void itemId() throws UnsupportedEncodingException, JsonProcessingException {
         System.out.print("* * * 조회할 상품ID >> ");
         String id = sc.nextLine();
         id = sc.nextLine();
-        getByPage(0, 1, id, ACCESS_TOKEN);
+        getByPage(0, 1, id, loginInfoAccessToken.getAccessToken());
     }
 
     public static void itemName() throws UnsupportedEncodingException, JsonProcessingException {
         System.out.print("* * * 조회할 상품명 >> ");
         String name = sc.nextLine();
         name = sc.nextLine();
-        getByPage(0, 2, name, ACCESS_TOKEN);
+        getByPage(0, 2, name, loginInfoAccessToken.getAccessToken());
     }
 
     public static void orderDate() throws UnsupportedEncodingException, JsonProcessingException {
         System.out.print("* * * 조회할 발주일(####-##-##) >> ");
         String order = sc.nextLine();
         order = sc.nextLine();
-        getByPage(0, 3, order, ACCESS_TOKEN);
+        getByPage(0, 3, order, loginInfoAccessToken.getAccessToken());
     }
 
     public static void orderRegist(OrdersSaveRequestDto dto) {
         ApiKit apiKit = new ApiKit();
-        ApiResponse response = apiKit.postRequestWithAuth("http://localhost:8080/orders", dto, ACCESS_TOKEN);
+        ApiResponse response = apiKit.postRequestWithAuth("http://localhost:8080/orders", dto, loginInfoAccessToken.getAccessToken());
         System.out.println(response.getStatusCode());
     }
 
