@@ -6,19 +6,27 @@ spring:
     username: root
     password: Abcd123!
 
-  sql.init.mode: always
+  sql:
+    init:
+      mode: always
+      continue-on-error: true
 
   jpa:
     open-in-view: true
     defer-datasource-initialization: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate.format_sql: true
       dialect: org.hibernate.dialect.MySQL8InnoDBDialect
 
-
 logging:
   level:
     org.hibernate.SQL: debug
+
+secret:
+  firebase:
+    api-key: 
+  jwt:
+    salt: 
