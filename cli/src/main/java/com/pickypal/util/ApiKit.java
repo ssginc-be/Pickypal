@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ByteArrayEntity;
@@ -27,7 +28,7 @@ public class ApiKit {
 
         try {
             CloseableHttpClient client = HttpClients.createDefault();
-            HttpGet getRequest = new HttpGet(endpoint); //GET 메소드 URL 생성
+            HttpGet getRequest = new HttpGet(endpoint); // GET 메소드 URL 생성
 
             CloseableHttpResponse response = client.execute(getRequest);
             int statusCode = response.getStatusLine().getStatusCode();
@@ -61,7 +62,7 @@ public class ApiKit {
 
         try {
             CloseableHttpClient client = HttpClients.createDefault();
-            HttpGet getRequest = new HttpGet(endpoint); //GET 메소드 URL 생성
+            HttpGet getRequest = new HttpGet(endpoint); // GET 메소드 URL 생성
             getRequest.addHeader("Authorization", "Bearer " + ACCESS_TOKEN);
 
             CloseableHttpResponse response = client.execute(getRequest);
@@ -138,14 +139,19 @@ public class ApiKit {
 
     // Http POST request **with auth header** to backend server
     // 모든 등록 용도: access token 필요
-    public ApiResponse postRequestWithAuth(String endpoint) {
-        String ACCESS_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb290Iiwicm9sZSI6IkhFQUQiLCJleHAiOjE3MzU3NDQ0NjN9.4Y6yReg_4HO_66rz5e-7XGrQEux80gxf0RQu9ONG598";
+    public ApiResponse postRequestWithAuth(String endpoint, Object dto, String ACCESS_TOKEN) {
         ApiResponse res = new ApiResponse();
+        ObjectMapper mapper = new ObjectMapper();
 
         try {
             CloseableHttpClient client = HttpClients.createDefault();
             HttpPost postRequest = new HttpPost(endpoint); // POST 메소드 URL 생성
+            postRequest.setHeader("Content-Type", "application/json");
             postRequest.addHeader("Authorization", ACCESS_TOKEN); // token 이용시
+            // add body
+            String json = mapper.writeValueAsString(dto);
+            HttpEntity entity = new ByteArrayEntity(json.getBytes("UTF-8"));
+            postRequest.setEntity(entity);
 
             CloseableHttpResponse response = client.execute(postRequest);
             int statusCode = response.getStatusLine().getStatusCode();
@@ -174,7 +180,40 @@ public class ApiKit {
 
     // Http DELETE request **with auth header** to backend server
     // 모든 삭제 용도: access token 필요
-    public void deleteRequestWithAuth(String endpoint) {
+    public ApiResponse deleteRequestWithAuth(String endpoint, String ACCESS_TOKEN) {
+        ApiResponse res = new ApiResponse();
 
+        try {
+            CloseableHttpClient client = HttpClients.createDefault();
+            HttpDelete deleteRequest = new HttpDelete(endpoint); // DELETE 메소드 URL 생성
+            deleteRequest.addHeader("Authorization", "Bearer " + ACCESS_TOKEN);
+
+            CloseableHttpResponse response = client.execute(deleteRequest);
+            int statusCode = response.getStatusLine().getStatusCode();
+            res.setStatusCode(statusCode);
+
+            // response 출력
+            String body;
+            if (statusCode == 200) {
+                // response body를 UTF-8로 파싱
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
+                body = bufferedReader.readLine();
+                bufferedReader.close();
+
+                System.out.println("* * * ApiKit(auth DELETE): 200 OK");
+                System.out.println(body);
+
+            } else {
+                System.out.println("* * * ApiKit(auth DELETE): Server returned " + statusCode);
+                body = null;
+            }
+            res.setJsonStr(body);
+            client.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return res;
     }
 }
