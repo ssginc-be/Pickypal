@@ -108,10 +108,23 @@ public class BackdoorService {
 
         // 6. 발주 id에 해당하는 지점의 해당 상품 재고를 추가
         List<BranchStock> bsList = bsRepo.findAllByBranchIdAndItemId(order.getBranch().getId(), order.getItem().getId());
-        BranchStock bs = bsList.get(0);
-        Integer stock = bs.getStock();
-        bs.setStock(stock + order.getQuantity());
-        bsRepo.save(bs);
+        
+        if (bsList.isEmpty()) { // 최초 row 추가
+            Branch b = order.getBranch();
+            Item i = order.getItem();
+            BranchStock bs = new BranchStock();
+            bs.setId(b.getId() + "_" + i.getId());
+            bs.setBranch(b);
+            bs.setItem(i);
+            bs.setStock(order.getQuantity());
+            bsRepo.save(bs);
+        }
+        else { // 이미 row 있어서 조회됐으면 ++
+            BranchStock bs = bsList.get(0);
+            Integer stock = bs.getStock();
+            bs.setStock(stock + order.getQuantity());
+            bsRepo.save(bs);
+        }
 
         log.info("* * * BackdoorService: order ship done.");
         log.info("requested order id: {}", oid);
