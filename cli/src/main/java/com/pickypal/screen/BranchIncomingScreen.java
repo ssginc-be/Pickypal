@@ -10,6 +10,7 @@ import com.pickypal.dto.stock.HeadStockViewResponseDto;
 import com.pickypal.util.ApiKit;
 import com.pickypal.util.ApiResponse;
 import com.pickypal.util.Console;
+import dnl.utils.text.table.TextTable;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -36,9 +37,9 @@ public class BranchIncomingScreen {
             Console.clear();
             System.out.println("[ [지점] 입고 조회 화면 ]");
             if (loginInfo != null) System.out.println("* 로그인 정보: " + loginInfo.getUserName() + " / " + loginInfo.getRole());
-            System.out.println("|---------------------------------------------------------");
-            System.out.printf("|%9s|%15s|%22s|", "입고ID", "상품ID", "상품명\n");
-            System.out.println("|---------------------------------------------------------");
+//            System.out.println("|---------------------------------------------------------");
+//            System.out.printf("|%9s|%15s|%22s|", "입고ID", "상품ID", "상품명\n");
+//            System.out.println("|---------------------------------------------------------");
 
             getByPage(pageIdx, currentOption, value, loginInfo.getAccessToken());
 
@@ -100,11 +101,16 @@ public class BranchIncomingScreen {
             ObjectMapper mapper = new ObjectMapper();
             mapper.registerModule(new JavaTimeModule()); // LocalDateTime 파싱을 위해 필요
             String jsonStr = response.getJsonStr();
+
             List<BranchIncomingItemResponseDto> dtoList = mapper.readValue(jsonStr, TypeFactory.defaultInstance().constructCollectionType(List.class, BranchIncomingItemResponseDto.class));
-            for (BranchIncomingItemResponseDto dto : dtoList) {
-                System.out.printf("|%9s|%15s|%22s|%9s%9s%9s%9s", dto.getId(), dto.getItemId(), dto.getItemName(), dto.getSupplierId(), dto.getSupplierName(), dto.getQuantity(), dto.getInTime());
-                System.out.println();
-            }
+            String[] columnNames = new String[]{"입고ID", "상품ID", "상품명", "납품처ID", "납품처명", "수량", "입고일시"};
+            Object[][] data = dtoList.stream()
+                    .map(dto -> new Object[] {
+                            dto.getId(), dto.getItemId(), dto.getItemName(), dto.getSupplierId(), dto.getSupplierName(), dto.getQuantity(), dto.getInTime()
+                    }).toArray(Object[][]::new);
+
+            TextTable tt = new TextTable(columnNames, data);
+            tt.printTable();
         }
         else { // 호출 실패하면
             System.out.println("* * * BranchIncomingScreen: API failed");

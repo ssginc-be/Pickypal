@@ -54,11 +54,11 @@ public class BranchOrderFinalScreen {
             System.out.println("0) 발주 조회");
             System.out.println("1) 발주 등록");
             System.out.println("2) 발주 삭제");
-            System.out.println("3) 뒤로 가기");
+            System.out.println("3) [← 뒤로 가기]");
 
             System.out.println();
             if (typedInvalidMenu) System.out.println("* * * 잘못 입력했습니다. 옵션 번호를 선택해주세요: ");
-            System.out.print("* * * 조회 옵션 번호를 선택해주세요: ");
+            System.out.print("* * * 옵션 번호를 선택해주세요: ");
             currentOption = sc.nextInt();
             sc.nextLine(); // remove line feed
 

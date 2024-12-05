@@ -60,6 +60,9 @@ public class HeadStockScreen {
             System.out.print("* * * 조회 옵션 번호를 선택해주세요: ");
             currentOption = sc.nextInt();
 
+            if (currentOption == 0) {
+                typedInvalidMenu = false;
+            }
             if (currentOption == 3) {
                 typedInvalidMenu = false;
                 System.out.print("* * * 유형 선택: 0)행사 상품  1)차별화 상품  2)Fresh Food >> ");
@@ -79,7 +82,8 @@ public class HeadStockScreen {
                 System.out.print("* * * 검색할 값 >> ");
                 value = sc.nextLine();
             }
-            else { // 잘못된 옵션 값 입력
+
+            if (currentOption < 0 || 4 < currentOption) { // 잘못된 옵션 값 입력
                 typedInvalidMenu = true;
             }
 

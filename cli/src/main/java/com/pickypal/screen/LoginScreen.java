@@ -21,7 +21,17 @@ public class LoginScreen {
         //Runtime.getRuntime().exec("cls"); // for Windows
         Console.clear();
 
+        System.out.println("########  ####  ######  ##    ## ##    ## ########     ###    ##");
+        System.out.println("##     ##  ##  ##    ## ##   ##   ##  ##  ##     ##   ## ##   ##");
+        System.out.println("##     ##  ##  ##       ##  ##     ####   ##     ##  ##   ##  ##");
+        System.out.println("########   ##  ##       #####       ##    ########  ##     ## ##");
+        System.out.println("##         ##  ##       ##  ##      ##    ##        ######### ##");
+        System.out.println("##         ##  ##    ## ##   ##     ##    ##        ##     ## ##");
+        System.out.println("##        ####  ######  ##    ##    ##    ##        ##     ## ########");
+        System.out.println();
+        System.out.println("--------------------------------------------");
         System.out.println("[ 로그인 화면 ]");
+        System.out.println("--------------------------------------------");
         Scanner sc = new Scanner(System.in);
 
         System.out.print("* 아이디: ");
@@ -36,6 +46,8 @@ public class LoginScreen {
     public static LoginResponseDto login(String uid, String pw) throws JsonProcessingException {
         ApiKit apiKit = new ApiKit();
         LoginRequestDto reqDto = new LoginRequestDto(uid, pw);
+        System.out.println("--------------------------------------------");
+        System.out.println("* * * 로그인 중입니다. 잠시만 기다려주세요.");
         ApiResponse response = apiKit.postRequest("http://localhost:8080/auth/login", reqDto);
 
         ObjectMapper mapper = new ObjectMapper();

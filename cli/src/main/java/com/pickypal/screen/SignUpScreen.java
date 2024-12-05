@@ -7,6 +7,7 @@ import com.pickypal.dto.auth.LoginResponseDto;
 import com.pickypal.dto.auth.SignUpRequestDto;
 import com.pickypal.util.ApiKit;
 import com.pickypal.util.ApiResponse;
+import com.pickypal.util.Console;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -19,8 +20,19 @@ public class SignUpScreen {
 
     public static void start() throws IOException {
         //Runtime.getRuntime().exec("cls"); // for Windows
+        Console.clear();
 
+        System.out.println("########  ####  ######  ##    ## ##    ## ########     ###    ##");
+        System.out.println("##     ##  ##  ##    ## ##   ##   ##  ##  ##     ##   ## ##   ##");
+        System.out.println("##     ##  ##  ##       ##  ##     ####   ##     ##  ##   ##  ##");
+        System.out.println("########   ##  ##       #####       ##    ########  ##     ## ##");
+        System.out.println("##         ##  ##       ##  ##      ##    ##        ######### ##");
+        System.out.println("##         ##  ##    ## ##   ##     ##    ##        ##     ## ##");
+        System.out.println("##        ####  ######  ##    ##    ##    ##        ##     ## ########");
+        System.out.println();
+        System.out.println("--------------------------------------------");
         System.out.println("[ 회원가입 화면 ]");
+        System.out.println("--------------------------------------------");
         Scanner sc = new Scanner(System.in);
 
         System.out.print("* 아이디: ");
@@ -66,6 +78,8 @@ public class SignUpScreen {
     public static void signUp(String uid, String name, String email, String pw, String role, String bid) {
         ApiKit apiKit = new ApiKit();
         SignUpRequestDto reqDto = new SignUpRequestDto(uid, name, email, pw, role, bid);
+        System.out.println("--------------------------------------------");
+        System.out.println("* * * 가입 등록 중입니다. 잠시만 기다려주세요.");
         ApiResponse response = apiKit.postRequest("http://localhost:8080/auth/signup", reqDto);
     }
 }

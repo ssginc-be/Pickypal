@@ -21,9 +21,20 @@ public class MainScreen {
 
         while (true) {
             Console.clear();
+
+            System.out.println("########  ####  ######  ##    ## ##    ## ########     ###    ##");
+            System.out.println("##     ##  ##  ##    ## ##   ##   ##  ##  ##     ##   ## ##   ##");
+            System.out.println("##     ##  ##  ##       ##  ##     ####   ##     ##  ##   ##  ##");
+            System.out.println("########   ##  ##       #####       ##    ########  ##     ## ##");
+            System.out.println("##         ##  ##       ##  ##      ##    ##        ######### ##");
+            System.out.println("##         ##  ##    ## ##   ##     ##    ##        ##     ## ##");
+            System.out.println("##        ####  ######  ##    ##    ##    ##        ##     ## ########");
+            System.out.println();
+            System.out.println("--------------------------------------------");
+
             System.out.println("[ 메인 화면 ]");
             if (loginInfo != null) System.out.println("* 로그인 정보: " + loginInfo.getUserName() + " / 권한(" + loginInfo.getRole() + ")");
-            System.out.println("-----------------------------");
+            System.out.println("--------------------------------------------");
 
             if (loginInfo != null) System.out.println("0) 로그아웃");
             if (loginInfo == null) System.out.println("1) 로그인");
