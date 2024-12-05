@@ -1,0 +1,22 @@
+/* NAV 공통 css */
+.button
+{
+    -fx-background-color: #6F5CC2;
+    -fx-background-radius:0em ;
+}
+.button:hover
+{
+    -fx-background-color: #5644b3;
+}
+.button:pressed
+{
+    -fx-background-color: #7156DD;
+    -fx-border-color: #CDD1D6;
+    -fx-border-width: 0px 0px 0px 3px;
+}
+Text {
+    -fx-font-family: "SUIT Medium";
+    -fx-font-size: 12px;
+    -fx-fill: #333333;
+}
+

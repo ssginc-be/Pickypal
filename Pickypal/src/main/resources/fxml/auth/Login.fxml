@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<!-- 로그인 UI -->
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/21.0.5" xmlns:fx="http://javafx.com/fxml" fx:controller="auth.LoginController">
+    <children>
+        <!-- Main Panel -->
+        <AnchorPane layoutX="224.0" layoutY="76.0" prefHeight="249.0" prefWidth="310.0" style="-fx-background-radius: 25; -fx-background-color: white;">
+            <children>
+                <TextField layoutX="72.0" layoutY="53.0" prefHeight="25.0" prefWidth="174.0" promptText="Enter Login" styleClass="textField">
+                    <stylesheets>
+                        <URL value="@../../css/color.css" />
+                    </stylesheets>
+                </TextField>
+                <PasswordField layoutX="72.0" layoutY="109.0" prefHeight="25.0" prefWidth="174.0" promptText="Enter Password" styleClass="textField">
+                    <stylesheets>
+                        <URL value="@../../css/color.css" />
+                    </stylesheets>
+                </PasswordField>
+                <Button layoutX="112.0" layoutY="176.0" prefHeight="41.0" prefWidth="87.0" styleClass="colorBackground" stylesheets="@../../css/color.css" text="Login" />
+            </children>
+        </AnchorPane>
+
+        <!-- Sidebar -->
+        <AnchorPane fx:id="sideBar" layoutX="31.0" layoutY="53.0" prefHeight="295.0" prefWidth="220.0" style="-fx-background-radius: 25;" styleClass="colorBackground" stylesheets="@../../css/color.css">
+            <children>
+                <Button layoutX="182.0" layoutY="14.0" onAction="#closeProgram" text="X" />
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<!-- (지점) 발주 등록 -->
+<VBox xmlns="http://javafx.com/javafx/21.0.5" xmlns:fx="http://javafx.com/fxml/1"  prefHeight="700.0" prefWidth="800.0" BorderPane.alignment="CENTER" stylesheets="@../../css/style.css">
+    <children>
+      <VBox>
+         <children>
+            <AnchorPane prefHeight="73.0" prefWidth="800.0" style="-fx-background-color: #52438F;">
+               <children>
+                  <Text fill="WHITE" layoutX="26.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="발주 등록">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+              <AnchorPane prefHeight="154.0" prefWidth="800.0">
+                  <children>
+                      <Button layoutX="569.0" layoutY="30.0" mnemonicParsing="false" text="발주 등록" />
+                      <TextField layoutX="80.0" layoutY="30.0" />
+                      <Text layoutX="30.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="상품ID">
+                          <font>
+                              <Font name="SUIT Medium" size="12.0" />
+                          </font>
+                      </Text>
+                      <TextField layoutX="354.0" layoutY="30.0" />
+                      <Text layoutX="290.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="발주 수량">
+                          <font>
+                              <Font name="SUIT Medium" size="12.0" />
+                          </font>
+                      </Text>
+                  <Label layoutY="87.0" text="재고 부족 상품 조회">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  </children>
+              </AnchorPane>
+         </children>
+      </VBox>
+        <TableView fx:id="orderRegistTable" prefHeight="566.0" prefWidth="800.0">
+            <columns>
+                <TableColumn fx:id="productIdColumn" prefWidth="59.0" text="상품 ID" />
+                <TableColumn fx:id="branchIdColumn" prefWidth="145.0" text="상품명" />
+                <TableColumn fx:id="productTypeColumn" prefWidth="140.0" text="상품 유형" />
+                <TableColumn fx:id="tagColumn" prefWidth="122.0" text="태그" />
+                <TableColumn fx:id="supplierNameColumn" prefWidth="84.0" text="납품처" />
+                <TableColumn fx:id="priceColumn" prefWidth="110.0" text="가격" />
+                <TableColumn fx:id="stockColumn" prefWidth="139.0" text="재고 수량" />
+            </columns>
+        </TableView>
+      <Pagination prefHeight="44.0" prefWidth="800.0" />
+    </children>
+</VBox>

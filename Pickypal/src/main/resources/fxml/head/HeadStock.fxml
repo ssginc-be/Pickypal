@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<!-- (본사) 재고 조회 -->
+<VBox xmlns="http://javafx.com/javafx/21.0.5" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@../../css/style.css">
+    <children>
+        <AnchorPane>
+            <children>
+                <Button layoutX="751.0" layoutY="63.0" mnemonicParsing="false" text="Excel" />
+                <Button layoutX="667.0" layoutY="63.0" mnemonicParsing="false" text="검색" />
+                <TextField layoutX="80.0" layoutY="21.0" />
+                <Text layoutX="30.0" layoutY="40.0" text="상품 ID">
+                    <font>
+                        <Font name="SUIT Medium" size="12.0" />
+                    </font>
+                </Text>
+                <TextField layoutX="319.0" layoutY="21.0" />
+                <Text layoutX="272.0" layoutY="40.0" text="상품명">
+                    <font>
+                        <Font name="SUIT Medium" size="12.0" />
+                    </font>
+                </Text>
+                <DatePicker layoutX="575.0" layoutY="20.0" />
+                <Text layoutX="510.0" layoutY="40.0" text="입고 날짜">
+                    <font>
+                        <Font name="SUIT Medium" size="12.0" />
+                    </font>
+                </Text>
+                <Text layoutX="30.0" layoutY="82.0" text="필터링">
+                    <font>
+                        <Font name="SUIT Medium" size="12.0" />
+                    </font>
+                </Text>
+                <ComboBox layoutX="80.0" layoutY="63.0" promptText="카테고리" />
+            </children>
+        </AnchorPane>
+        <TableView fx:id="branchIncomingTable">
+            <columns>
+                <TableColumn fx:id="productIdColumn" text="상품 ID" />
+                <TableColumn fx:id="incomingDateColumn" text="상품명" />
+                <TableColumn fx:id="productNameColumn" text="상품 유형" />
+                <TableColumn fx:id="productTagColumn" text="태그" />
+                <TableColumn fx:id="incomingQuantityColumn" text="납품처" />
+                <TableColumn text="가격" />
+                <TableColumn text="재고 수량" />
+                <TableColumn text="입고 날짜" />
+            </columns>
+        </TableView>
+        <Pagination />
+    </children>
+</VBox>
