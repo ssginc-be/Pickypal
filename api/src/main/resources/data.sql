@@ -28,3 +28,9 @@ VALUES
     ('S00010', '오뚜기', '서울특별시 강남구', '010-1234-5678', '2024-12-01 12:29:12.000000'),
     ('S00011', '삼립', '서울특별시 강남구', '010-1234-5678', '2024-12-01 12:29:12.000000')
 ;
+
+INSERT INTO service_user (user_id, user_name, email, role, branch_id, last_modified_at)
+VALUES
+    ('Queue-ri', '규리', 'qriositylog@gmail.com', 'BRANCH', 'B00006', '2024-12-01 12:29:12.000000'),
+    ('root', 'root', 'root@pickypal.com', 'HEAD', NULL, '2024-12-02 00:00:00.000000')
+;
