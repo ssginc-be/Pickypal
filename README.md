@@ -14,6 +14,10 @@ emart24 입출고 재고관리 프로그램 (WMS)
 ### ER Diagram
 ![pickypal-erd](https://github.com/user-attachments/assets/ac5dfd7d-53c0-42dd-9391-e709d5187a2a)
 
+### Major Dependencies
+- JDK: 17
+- JavaFX SDK: 21.0.5(LTS)
+
 ## 📌How to start API server
 
 1. `api` 프로젝트의 `/resources/application.yml`에 하단의 property를 기입
