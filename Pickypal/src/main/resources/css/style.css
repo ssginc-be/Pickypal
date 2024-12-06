@@ -25,7 +25,7 @@ TextField {
     -fx-border-width: 1;
     -fx-border-radius: 5;
     -fx-background-radius: 5;
-    -fx-font-family: "SUIT Regular";
+    -fx-font-family: "SUIT Medium";
     -fx-font-size: 12px;
 }
 
@@ -35,7 +35,7 @@ ComboBox {
     -fx-border-radius: 5;
     -fx-background-radius: 5;
     -fx-padding: 3;
-    -fx-font-family: "SUIT Regular";
+    -fx-font-family: "SUIT Medium";
     -fx-font-size: 12px;
 }
 
@@ -60,7 +60,7 @@ TableView {
     -fx-border-color: #dcdcdc;
     -fx-border-radius: 5;
     -fx-background-radius: 5;
-    -fx-font-family: "SUIT Regular";
+    -fx-font-family: "SUIT Medium";
     -fx-font-size: 12px;
     -fx-alternate-row-fill-visible: true;
     -fx-selection-bar: #4CAF50;
@@ -68,6 +68,10 @@ TableView {
 
 TableView .column-header-background {
     -fx-background-color: #f1f1f1;
+}
+
+TableView .table-cell {
+    -fx-font-family: "SUIT Medium";
 }
 
 TableColumn {
@@ -81,6 +85,40 @@ Pagination {
     -fx-border-color: #dcdcdc;
     -fx-border-radius: 5;
     -fx-background-radius: 5;
-    -fx-font-family: "SUIT Regular";
+    -fx-font-family: "SUIT Medium";
     -fx-font-size: 12px;
+}
+
+
+/* Additional pagination style code */
+/*.pagination > .pagination-control > .control-box {*/
+/*    -fx-spacing: 0;*/
+/*}*/
+
+/* You can control the actual button sizes here */
+.pagination > .pagination-control > .control-box > .number-button,
+.pagination > .pagination-control > .control-box > .bullet-button,
+.pagination > .pagination-control > .control-box > .left-arrow-button,
+.pagination > .pagination-control > .control-box > .right-arrow-button {
+    -fx-background-insets: 0, 1;
+    -fx-background-color: lightgray, #FAFAFA;
+    -fx-min-width: 30;
+    -fx-min-height: 30;
+}
+
+/* Colors on hover */
+.pagination > .pagination-control > .control-box > .number-button:hover,
+.pagination > .pagination-control > .control-box > .bullet-button:hover,
+.pagination > .pagination-control > .control-box > .left-arrow-button:hover,
+.pagination > .pagination-control > .control-box > .right-arrow-button:hover {
+    -fx-background-insets: 0;
+    -fx-background-color: lightgray;
+}
+
+/* Selected toggle color */
+.pagination > .pagination-control > .control-box > .number-button:selected,
+.pagination > .pagination-control > .control-box > .bullet-button:selected{
+    -fx-background-insets: 0;
+    -fx-background-color: #58379A;
+    -fx-text-fill: white;
 }
