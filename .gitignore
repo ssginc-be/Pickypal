@@ -29,3 +29,6 @@ replay_pid*
 
 # Ignore project build files
 build/
+
+# Ignore GUI project bin folder
+Pickypal/bin/
