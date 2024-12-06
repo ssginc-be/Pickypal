@@ -4,12 +4,16 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class PickypalMain extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/branch/BranchMainLayout.fxml"));
+        // 폰트 적용
+        Font.loadFont(getClass().getResourceAsStream("SUIT-Medium.ttf"), 14);
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/head/HeadStock.fxml"));
         // fxml/auth/Login.fxml을 불러온다.
         Parent root = loader.load();
 
